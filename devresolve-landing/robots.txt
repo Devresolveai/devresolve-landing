@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# AI crawlers blocked — content not licensed for model training
+# AI crawlers blocked. Content is not licensed for model training.
 User-agent: GPTBot
 Disallow: /
 
