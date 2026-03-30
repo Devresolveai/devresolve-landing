@@ -1,25 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="DevResolve — Autonomous incident resolution for high-performance engineering teams. Detect, resolve, and close tickets without manual effort.">
-    <meta name="keywords" content="DevResolve, autonomous incident resolution, engineering automation, Jira, Slack, Zendesk, outcome-based AI">
+    <meta name="description" content="DevResolve — Automated technical support deflection that closes documentation, configuration, and environment tickets before they ever reach your dev team.">
+    <meta name="keywords" content="DevResolve, technical support deflection, engineering time recovery, automated ticket resolution, Jira, Slack, developer productivity">
     <meta name="author" content="DevResolve, Inc.">
     <meta name="copyright" content="&copy; 2026 DevResolve, Inc. All rights reserved.">
     <meta name="robots" content="index, follow">
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="DevResolve">
-    <meta property="og:title" content="DevResolve — Autonomous Incident Resolution for Engineering Teams">
-    <meta property="og:description" content="DevResolve resolves incidents, documents outcomes, and closes tickets automatically. Pay only for outcomes.">
+    <meta property="og:title" content="DevResolve — Stop Low-Level Support from Draining Your Engineering Talent">
+    <meta property="og:description" content="DevResolve automates technical customer ticket resolution so your engineers focus on what matters. Documentation requests, config help, and environment triaging — resolved before they reach your team.">
     <meta property="og:url" content="https://devresolve.ai">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@devresolveai">
-    <meta name="twitter:title" content="DevResolve — Resolve Incidents. Automatically.">
-    <meta name="twitter:description" content="Autonomous incident resolution for high-performance engineering teams. Pay for outcomes, not seats.">
-    <title>DevResolve — Resolve Incidents. Automatically.</title>
+    <meta name="twitter:title" content="DevResolve — Protect Your Engineers from Low-Level Support Drain">
+    <meta name="twitter:description" content="Automated data synthesis closes technical customer tickets before they ever reach your dev team. Pay only for verified resolutions.">
+    <title>DevResolve — Stop Low-Level Support from Draining Your Engineering Talent</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -61,7 +61,7 @@
       }
 
       /* ── Typography ───────────────────────────────────────────── */
-      .display-1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
+      .display-1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.6rem, 6.5vw, 5.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
       .display-2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; }
       .display-3 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
       .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
@@ -125,7 +125,7 @@
         mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent);
         pointer-events: none;
       }
-      .hero-content { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; text-align: center; }
+      .hero-content { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; text-align: center; }
       .hero-badge {
         display: inline-flex; align-items: center; gap: 8px;
         background: var(--bg-card); border: 1px solid var(--border-accent);
@@ -161,7 +161,7 @@
       }
       .btn-ghost-dr:hover { border-color: var(--border-accent); color: var(--text-primary); }
 
-      /* ── Terminal / Code mockup ───────────────────────────────── */
+      /* ── Terminal / Activity feed ────────────────────────────── */
       .terminal {
         background: var(--bg-raised); border: 1px solid var(--border);
         border-radius: var(--radius-lg); overflow: hidden;
@@ -180,14 +180,9 @@
       .terminal-label { margin-left: auto; font-size: 0.75rem; color: var(--text-muted); font-family: 'SF Mono', 'Fira Code', monospace; }
       .terminal-body { padding: 28px 32px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.82rem; line-height: 1.8; }
       .t-comment { color: #4a4a6a; }
-      .t-key { color: #818cf8; }
       .t-string { color: #34d399; }
-      .t-number { color: #fbbf24; }
-      .t-tag { color: #f472b6; }
       .t-dim { color: #5a5a72; }
       .t-white { color: #e2e8f0; }
-      .t-indent { padding-left: 20px; }
-      .t-indent2 { padding-left: 40px; }
 
       /* ── Stats bar ────────────────────────────────────────────── */
       .stats-bar { padding: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -239,9 +234,6 @@
       .integration-badge .fa-slack { color: #4a154b; filter: brightness(3); }
       .integration-badge .fa-jira { color: #0052cc; filter: brightness(2); }
       .integration-badge .fa-github { color: var(--text-secondary); }
-      .integration-badge .fa-google-drive { color: #4285f4; }
-      .integration-badge .fa-salesforce { color: #00a1e0; }
-      .integration-badge-more { color: var(--text-muted); font-size: 0.8rem; padding-left: 8px; }
 
       /* ── Workflow diagram ─────────────────────────────────────── */
       .workflow-card {
@@ -317,7 +309,7 @@
       .price-features li i { color: var(--accent-green); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
       .price-features li .feature-note { font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 2px; }
 
-      /* ── Resolution definition block ─────────────────────────── */
+      /* ── Resolution guarantee block ───────────────────────────── */
       .resolution-def {
         margin-top: 56px;
         background: var(--bg-card); border: 1px solid var(--border);
@@ -380,10 +372,6 @@
       .social-links a { color: var(--text-muted); font-size: 16px; transition: color 0.2s; text-decoration: none; }
       .social-links a:hover { color: var(--text-primary); }
 
-      /* ── Divider labels ───────────────────────────────────────── */
-      .section-label { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-      .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
       /* ── Responsive ───────────────────────────────────────────── */
       @media (max-width: 991px) {
         .nav-links { display: none; }
@@ -427,7 +415,7 @@
           <li><a href="#integrations">Integrations</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact" class="nav-cta">Audit My Systems</a></li>
+          <li><a href="#contact" class="nav-cta">Time Recovery Audit</a></li>
         </ul>
         <button class="nav-toggle" aria-label="Menu">
           <i class="fa-light fa-bars"></i>
@@ -446,24 +434,24 @@
             Now in early access — Slack, Jira and Zendesk ready.
           </div>
           <h1 class="display-1 hero-title">
-            Resolve incidents.<br>
-            <span class="accent-text">Automatically.</span>
+            Stop Low-Level Support from<br>
+            <span class="accent-text">Draining Your Engineering Talent.</span>
           </h1>
-          <p class="lead-lg" style="max-width:580px; margin:0 auto;">
-            DevResolve monitors your team's resolution conversations, builds a structured resolution document, and delivers the right message to the right audience in your ticketing system. The ticket closes itself. No keyboard required.
+          <p class="lead-lg" style="max-width:640px; margin:0 auto;">
+            DevResolve uses automated data synthesis to close technical customer tickets—documentation requests, configuration help, and environment triaging—before they ever reach your dev team.
           </p>
           <div class="hero-actions">
             <a href="#contact" class="btn-primary-dr">
-              <i class="fa-light fa-rocket"></i> Audit My Systems
+              <i class="fa-light fa-shield-halved"></i> Protect Your Engineers
             </a>
             <a href="#how-it-works" class="btn-ghost-dr">
               See how it works <i class="fa-light fa-arrow-down"></i>
             </a>
           </div>
           <div class="hero-meta">
-            <div class="hero-meta-item"><i class="fa-light fa-check-circle"></i> No manual documentation</div>
-            <div class="hero-meta-item"><i class="fa-light fa-check-circle"></i> Customer-safe by default</div>
-            <div class="hero-meta-item"><i class="fa-light fa-check-circle"></i> Tickets close themselves</div>
+            <div class="hero-meta-item"><i class="fa-light fa-check-circle"></i> Docs & config tickets automated</div>
+            <div class="hero-meta-item"><i class="fa-light fa-check-circle"></i> Engineers freed from triage</div>
+            <div class="hero-meta-item"><i class="fa-light fa-check-circle"></i> Pay only for verified resolutions</div>
           </div>
 
           <!-- Activity feed mockup -->
@@ -472,32 +460,28 @@
               <span class="t-dot t-red"></span>
               <span class="t-dot t-yellow"></span>
               <span class="t-dot t-green"></span>
-              <span class="terminal-label">devresolve / incident resolved / ENG-1847</span>
+              <span class="terminal-label">devresolve / support deflection / TKT-4291</span>
             </div>
             <div class="terminal-body">
-              <div><span class="t-comment">// Incident detected: ENG-1847 auth service degradation</span></div>
+              <div><span class="t-comment">// Incoming ticket: "How do I configure SSO with our IdP?" — deflecting before engineering queue</span></div>
               <div style="margin-top:14px; display:flex; align-items:flex-start; gap:12px;">
                 <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
-                <span class="t-white">Team conversation context captured and structured</span>
+                <span class="t-white">Documentation corpus, Jira history, and Slack context synthesized</span>
               </div>
               <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
                 <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
-                <span class="t-white">Root cause identified: <span class="t-string">auth service configuration drift</span></span>
+                <span class="t-white">Answer generated: <span class="t-string">step-by-step SSO configuration guide with env-specific notes</span></span>
               </div>
               <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
                 <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
-                <span class="t-white">Resolution document generated with <span class="t-dim">high confidence</span></span>
+                <span class="t-white">Customer environment verified — <span class="t-dim">no active bug detected</span></span>
               </div>
               <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
                 <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
-                <span class="t-white">Customer update drafted in plain language with no internal detail</span>
-              </div>
-              <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
-                <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
-                <span class="t-white">Engineering notes secured and <span class="t-dim">restricted to internal team</span></span>
+                <span class="t-white">Resolution delivered to customer. <span class="t-dim">Engineering team not involved.</span></span>
               </div>
               <div style="margin-top:16px; padding:14px 16px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:8px;">
-                <span style="color:var(--accent-green); font-weight:600;">&#10003; ENG-1847 closed. Resolution delivered to customer. Internal notes archived.</span>
+                <span style="color:var(--accent-green); font-weight:600;">&#10003; TKT-4291 resolved autonomously. 0 engineers interrupted. Time recovered.</span>
               </div>
             </div>
           </div>
@@ -510,20 +494,20 @@
       <div class="container">
         <div class="stats-grid">
           <div class="stat-item">
-            <div class="stat-number">~<span class="accent">65</span>%</div>
-            <div class="stat-label">of tickets resolved without human action</div>
+            <div class="stat-number">~<span class="accent">70</span>%</div>
+            <div class="stat-label">of incoming support tickets deflected autonomously</div>
           </div>
           <div class="stat-item">
             <div class="stat-number"><span class="accent">0</span></div>
-            <div class="stat-label">manual resolution documents to write</div>
+            <div class="stat-label">engineers interrupted for low-level requests</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">&lt;<span class="accent">60</span>s</div>
-            <div class="stat-label">from Slack thread to closed Jira ticket</div>
+            <div class="stat-number">&lt;<span class="accent">90</span>s</div>
+            <div class="stat-label">from incoming ticket to resolved customer response</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number"><span class="accent">2</span></div>
-            <div class="stat-label">audiences. One pipeline. Zero mix-ups.</div>
+            <div class="stat-number"><span class="accent">3</span></div>
+            <div class="stat-label">data sources synthesized per resolution</div>
           </div>
         </div>
       </div>
@@ -534,69 +518,69 @@
       <div class="container">
         <div style="text-align:center; max-width:600px; margin:0 auto;">
           <p class="eyebrow">How it works</p>
-          <h2 class="display-2" style="margin-top:12px;">Four steps to zero manual work.</h2>
-          <p class="lead" style="margin-top:16px;">DevResolve plugs into your existing tools. No new workflows to build, no tickets to copy-paste.</p>
+          <h2 class="display-2" style="margin-top:12px;">Tickets deflected before they reach your team.</h2>
+          <p class="lead" style="margin-top:16px;">DevResolve integrates with your existing stack and intercepts low-level support requests the moment they arrive.</p>
         </div>
 
         <div class="flow-steps">
           <div class="flow-step">
             <div class="step-num">01</div>
-            <h3>Incident is detected</h3>
-            <p>When your team marks a ticket resolved, DevResolve activates instantly without any manual trigger.</p>
+            <h3>Ticket arrives</h3>
+            <p>A customer opens a technical support request — a how-to question, a config issue, or an environment problem.</p>
           </div>
           <div class="flow-step">
             <div class="step-num">02</div>
-            <h3>Context is captured</h3>
-            <p>The full resolution conversation is read and structured. Every message, timestamp, and participant is accounted for.</p>
+            <h3>Data synthesized</h3>
+            <p>DevResolve cross-references your documentation, Jira history, and Slack context to generate a precise, verified answer.</p>
           </div>
           <div class="flow-step">
             <div class="step-num">03</div>
-            <h3>Resolution is built</h3>
-            <p>DevResolve produces a complete resolution document covering root cause, action steps, affected systems, and a reusability score.</p>
+            <h3>Environment verified</h3>
+            <p>The agent automatically checks customer environment status and logs. Simple setup errors get resolved. Real bugs escalate as a full report.</p>
           </div>
           <div class="flow-step">
             <div class="step-num">04</div>
-            <h3>Ticket is closed</h3>
-            <p>The customer receives a clean update. The engineering team gets a full internal record. The ticket closes automatically.</p>
+            <h3>Ticket closed</h3>
+            <p>Customer gets an accurate answer. Engineers get their time back. The ticket closes itself. No keyboard required.</p>
           </div>
         </div>
 
         <!-- Workflow diagram -->
         <div class="workflow-card">
-          <p class="eyebrow" style="margin-bottom:20px;">The full pipeline at a glance</p>
+          <p class="eyebrow" style="margin-bottom:20px;">The TraceLayer deflection pipeline</p>
           <div class="workflow-row">
             <div class="workflow-node">
-              <span class="node-icon"><i class="fa-light fa-bell" style="color:#f59e0b;"></i></span>
-              <h4>Incident Detected</h4>
-              <p>Ticket resolution triggers the workflow</p>
-              <span class="workflow-badge badge-amber">Automated</span>
+              <span class="node-icon"><i class="fa-light fa-ticket" style="color:#f59e0b;"></i></span>
+              <h4>Ticket Received</h4>
+              <p>Support request enters the queue</p>
+              <span class="workflow-badge badge-amber">Intercepted</span>
             </div>
             <div class="workflow-arrow"><i class="fa-light fa-arrow-right"></i></div>
-            <div class="workflow-node">
-              <span class="node-icon"><i class="fa-light fa-messages" style="color:#818cf8;"></i></span>
-              <h4>Context Captured</h4>
-              <p>Team conversation is read and structured</p>
+            <div class="workflow-node active">
+              <span class="node-icon"><i class="fa-light fa-database" style="color:#818cf8;"></i></span>
+              <h4>Data Synthesized</h4>
+              <p>Docs, Jira &amp; Slack cross-referenced</p>
               <span class="workflow-badge badge-blue">Real-time</span>
             </div>
             <div class="workflow-arrow"><i class="fa-light fa-arrow-right"></i></div>
             <div class="workflow-node active">
-              <span class="node-icon"><i class="fa-light fa-brain" style="color:#818cf8;"></i></span>
-              <h4>Resolution Built</h4>
-              <p>AI generates structured resolution document</p>
-              <span class="workflow-badge badge-blue">High accuracy</span>
+              <span class="node-icon"><i class="fa-light fa-magnifying-glass-chart" style="color:#818cf8;"></i></span>
+              <h4>Environment Checked</h4>
+              <p>Logs gathered, status verified automatically</p>
+              <span class="workflow-badge badge-blue">Automated</span>
             </div>
             <div class="workflow-arrow"><i class="fa-light fa-arrow-right"></i></div>
             <div class="workflow-node">
-              <span class="node-icon"><i class="fa-light fa-user-check" style="color:#f59e0b;"></i></span>
-              <h4>Team Review</h4>
-              <p>Approve or edit before anything is sent</p>
-              <span class="workflow-badge badge-amber">Human in loop</span>
+              <span class="node-icon"><i class="fa-light fa-split" style="color:#f59e0b;"></i></span>
+              <h4>Routed</h4>
+              <p>Simple issues resolved. Real bugs escalated with full report.</p>
+              <span class="workflow-badge badge-amber">Intelligent</span>
             </div>
             <div class="workflow-arrow"><i class="fa-light fa-arrow-right"></i></div>
             <div class="workflow-node active">
               <span class="node-icon"><i class="fa-light fa-circle-check" style="color:#10b981;"></i></span>
-              <h4>Ticket Resolved</h4>
-              <p>Customer notified. Internal record secured.</p>
+              <h4>Time Recovered</h4>
+              <p>Customer answered. Engineers untouched.</p>
               <span class="workflow-badge badge-green">Done</span>
             </div>
           </div>
@@ -609,55 +593,48 @@
       <div class="container">
         <div style="text-align:center; max-width:600px; margin:0 auto;">
           <p class="eyebrow">Features</p>
-          <h2 class="display-2" style="margin-top:12px;">Built for engineering teams who hate toil</h2>
+          <h2 class="display-2" style="margin-top:12px;">Built to give engineers their time back</h2>
+          <p class="lead" style="margin-top:16px;">The TraceLayer engine synthesizes answers from your existing knowledge base — so your team never writes the same answer twice.</p>
         </div>
 
         <div class="features-grid">
+
           <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-split"></i></div>
-            <h3>Strict audience separation</h3>
-            <p>Customer-facing resolutions and internal engineering notes are generated, stored, and delivered as completely separate artifacts. They are enforced at the delivery layer so the two can never be mixed up.</p>
+            <div class="feature-icon"><i class="fa-light fa-book-open-cover"></i></div>
+            <h3>Automated Documentation Synthesis</h3>
+            <p>When a customer opens a "How-to" ticket, DevResolve synthesizes an answer from your documentation, Jira history, and Slack context to resolve it instantly.</p>
           </div>
+
           <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-wand-magic-sparkles"></i></div>
-            <h3>Structured resolution synthesis</h3>
-            <p>DevResolve extracts root cause, resolution steps, affected systems, environment signals, and a reusability score from your team's existing conversation. You get structured output, not a text summary.</p>
+            <div class="feature-icon"><i class="fa-light fa-magnifying-glass-chart"></i></div>
+            <h3>Technical Triage &amp; Verification</h3>
+            <p>The agent automatically gathers logs and verifies customer environment status. If it's a simple setup error, it's resolved. If it's a real bug, your devs get a full report, not a vague ticket.</p>
           </div>
+
           <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-shield-halved"></i></div>
-            <h3>Repeat ticket prevention</h3>
-            <p>Every resolved incident builds your resolution library. When a similar issue comes in next time, DevResolve surfaces the proven answer automatically. You reduce repeat tickets without adding to your headcount.</p>
+            <div class="feature-icon"><i class="fa-light fa-plug-circle-bolt"></i></div>
+            <h3>Frictionless Jira/Slack Integration</h3>
+            <p>DevResolve lives where your data is. It monitors incoming support requests and synthesizes solutions using your existing engineering knowledge base.</p>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-timeline"></i></div>
-            <h3>Full incident timeline</h3>
-            <p>Every resolution document includes a timestamped incident timeline covering when the issue started, when the team engaged, and when the fix landed. You get a complete record without anyone writing a post-mortem.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-pencil"></i></div>
-            <h3>Human review built in</h3>
-            <p>Every resolution goes through a team review step before anything reaches the customer. You can approve it as-is or edit the customer message and internal notes independently. Nothing ships until your team says so.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-plug"></i></div>
-            <h3>Works with any ticketing system</h3>
-            <p>Jira is fully supported today and additional platforms are coming. DevResolve is designed to be platform-neutral so the same resolution quality routes to whichever system your team already uses.</p>
-          </div>
+
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-rotate"></i></div>
-            <h3>Resilient by design</h3>
-            <p>DevResolve is built to stay online under load. Requests retry automatically on transient failures with progressive back-off. Your incident pipeline keeps moving even when upstream services hiccup.</p>
+            <h3>Repeat Ticket Prevention</h3>
+            <p>Every resolved ticket enriches your resolution library. Similar questions are answered faster over time — reducing support volume without hiring anyone new.</p>
           </div>
+
           <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-database"></i></div>
-            <h3>Full resolution history</h3>
-            <p>Every resolution is stored with complete version history. Re-running on the same incident creates a new version rather than overwriting the old one. You always have a full audit trail of how every incident was handled.</p>
+            <div class="feature-icon"><i class="fa-light fa-shield-halved"></i></div>
+            <h3>IP &amp; Data Protection</h3>
+            <p>Customer-facing answers never expose internal architecture. Engineering context is handled separately and never used to train external AI models. Your IP stays yours.</p>
           </div>
+
           <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-circle-check"></i></div>
-            <h3>Consistent output, every time</h3>
-            <p>DevResolve normalizes all output before it reaches your ticketing system. Consistent formatting, no rendering failures across tools. What your team approves is exactly what gets delivered.</p>
+            <div class="feature-icon"><i class="fa-light fa-chart-line-up"></i></div>
+            <h3>Resolution Analytics</h3>
+            <p>Track deflection rates, time recovered per engineer, and ticket category trends. Know exactly how much engineering time DevResolve is buying back for your team.</p>
           </div>
+
         </div>
       </div>
     </section>
@@ -666,13 +643,14 @@
     <section id="integrations" class="section section-sm" style="padding:60px 0;">
       <div class="container" style="text-align:center;">
         <p class="eyebrow">Integrations</p>
-        <h2 class="display-3" style="margin-top:12px;">Works with your existing stack</h2>
-        <p class="lead" style="margin-top:12px; max-width:500px; margin-left:auto; margin-right:auto;">No migration, no new tooling. DevResolve plugs straight into what you already use.</p>
+        <h2 class="display-3" style="margin-top:12px;">Lives where your data already is</h2>
+        <p class="lead" style="margin-top:12px; max-width:520px; margin-left:auto; margin-right:auto;">No migration. No new tooling. DevResolve plugs into your existing engineering knowledge base and starts deflecting from day one.</p>
         <div class="integrations-strip">
           <div class="integration-badge"><i class="fa-brands fa-slack"></i> Slack</div>
           <div class="integration-badge"><i class="fa-brands fa-jira"></i> Jira</div>
           <div class="integration-badge"><i class="fa-light fa-headset"></i> Zendesk</div>
           <div class="integration-badge"><i class="fa-brands fa-github"></i> GitHub</div>
+          <div class="integration-badge"><i class="fa-light fa-file-lines"></i> Confluence</div>
           <div class="integration-badge"><i class="fa-light fa-grid-2"></i> More coming</div>
         </div>
       </div>
@@ -683,11 +661,11 @@
       <div class="container">
         <div style="text-align:center;">
           <p class="eyebrow">Early access</p>
-          <h2 class="display-2" style="margin-top:12px;">What engineering teams are saying</h2>
+          <h2 class="display-2" style="margin-top:12px;">Engineering teams getting their time back</h2>
         </div>
         <div class="testimonials-grid">
           <div class="testimonial-card">
-            <blockquote>"We used to spend 20 minutes per incident writing Jira updates. DevResolve does it in seconds and the root cause is more thorough than anything we'd write ourselves."</blockquote>
+            <blockquote>"Our engineers were spending hours a week answering the same config questions. DevResolve just… handles them now. The team didn't even notice it was there — they just had more time."</blockquote>
             <div class="testimonial-author">
               <div class="author-avatar"><i class="fa-light fa-user"></i></div>
               <div>
@@ -697,17 +675,17 @@
             </div>
           </div>
           <div class="testimonial-card">
-            <blockquote>"The internal vs. external note separation is the feature we didn't know we needed. Customers get a clean reply. Engineers get the full stack trace. Zero leakage."</blockquote>
+            <blockquote>"The triage logic is what sold us. It doesn't just answer questions — it actually checks whether the customer's environment is set up correctly before deciding if it's a real bug. That's the hard part."</blockquote>
             <div class="testimonial-author">
               <div class="author-avatar"><i class="fa-light fa-user"></i></div>
               <div>
-                <div class="author-name">VP of Support Operations</div>
+                <div class="author-name">VP of Platform Engineering</div>
                 <div class="author-title">Enterprise infrastructure company</div>
               </div>
             </div>
           </div>
           <div class="testimonial-card">
-            <blockquote>"The repeat ticket prevention is genuinely useful. We started routing similar issues automatically and about 40% of our volume now gets handled without a human touching it."</blockquote>
+            <blockquote>"We tracked it for a month. DevResolve deflected about 68% of our incoming technical tickets without touching the engineering queue. That's real leverage."</blockquote>
             <div class="testimonial-author">
               <div class="author-avatar"><i class="fa-light fa-user"></i></div>
               <div>
@@ -723,10 +701,10 @@
     <!-- ── Pricing ────────────────────────────────────────────── -->
     <section id="pricing" class="section">
       <div class="container">
-        <div style="text-align:center; max-width:600px; margin:0 auto;">
+        <div style="text-align:center; max-width:620px; margin:0 auto;">
           <p class="eyebrow">Pricing</p>
           <h2 class="display-2" style="margin-top:12px;">Pay for outcomes.<br>Not for seats.</h2>
-          <p class="lead" style="margin-top:16px;">Every plan is built around verified Technical Resolutions. You pay when DevResolve closes the task, not before.</p>
+          <p class="lead" style="margin-top:16px;">Every plan is built around verified Technical Resolutions — tickets closed without human touch. You only pay when it works.</p>
         </div>
 
         <div class="pricing-grid">
@@ -735,27 +713,27 @@
           <div class="price-card">
             <h3>Tier 1</h3>
             <div class="price-tier-name">Starter</div>
-            <p class="price-tagline">Automate your core engineering triaging. Pay for outcomes, not seats.</p>
+            <p class="price-tagline">Start deflecting low-level tickets and measure the impact on your team's capacity.</p>
 
             <div class="price-platform-label">Platform fee</div>
             <div class="price-amount"><sup>$</sup>199</div>
             <div class="price-period">per month</div>
 
             <div class="price-resolution-rate">
-              <div class="rate-label">Includes first 10 resolutions</div>
+              <div class="rate-label">Includes 20 Technical Resolutions</div>
               <div class="rate-value"><sup style="font-size:0.9rem;">$</sup>10.00 <span style="font-size:0.85rem; font-weight:400; color:var(--text-muted);">per extra resolution</span></div>
-              <div class="rate-note">Billed only on verified completions</div>
+              <div class="rate-note">Billed only on verified, touchless completions</div>
             </div>
 
             <ul class="price-features">
-              <li><i class="fa-light fa-check"></i> Full resolution pipeline</li>
-              <li><i class="fa-light fa-check"></i> Slack, Jira and Zendesk</li>
-              <li><i class="fa-light fa-check"></i> Audience-separated delivery</li>
-              <li><i class="fa-light fa-check"></i> Team review and approval</li>
-              <li><i class="fa-light fa-check"></i> Resolution history and audit trail</li>
+              <li><i class="fa-light fa-check"></i> Documentation synthesis</li>
+              <li><i class="fa-light fa-check"></i> Automated environment triage</li>
+              <li><i class="fa-light fa-check"></i> Slack, Jira &amp; Zendesk</li>
+              <li><i class="fa-light fa-check"></i> Resolution history &amp; audit trail</li>
+              <li><i class="fa-light fa-check"></i> IP-safe delivery — no AI training on your data</li>
             </ul>
             <a href="#contact" class="btn-ghost-dr" style="width:100%; justify-content:center; margin-top:auto;">
-              <i class="fa-light fa-rocket"></i> Audit My Systems
+              <i class="fa-light fa-clock-rotate-left"></i> Time Recovery Audit
             </a>
           </div>
 
@@ -764,29 +742,29 @@
             <div class="featured-badge">Most popular</div>
             <h3>Tier 2</h3>
             <div class="price-tier-name">Professional</div>
-            <p class="price-tagline">High-volume synthesis for scaling departments. Maximum efficiency at half the per-resolution cost.</p>
+            <p class="price-tagline">High-volume deflection for scaling teams. Half the per-resolution cost with a deeper knowledge base.</p>
 
             <div class="price-platform-label">Platform fee</div>
             <div class="price-amount"><sup>$</sup>999</div>
             <div class="price-period">per month</div>
 
             <div class="price-resolution-rate">
-              <div class="rate-label">Includes first 150 resolutions</div>
+              <div class="rate-label">Includes 150 Technical Resolutions</div>
               <div class="rate-value"><sup style="font-size:0.9rem;">$</sup>5.00 <span style="font-size:0.85rem; font-weight:400; color:var(--text-muted);">per extra resolution</span></div>
               <div class="rate-note">Half the per-resolution cost of Starter</div>
             </div>
 
             <ul class="price-features">
               <li><i class="fa-light fa-check"></i> Everything in Starter</li>
-              <li><i class="fa-light fa-check"></i> Automated repeat ticket prevention
-                <span class="feature-note">Similar issues handled without agent involvement</span>
+              <li><i class="fa-light fa-check"></i> Automated repeat-ticket prevention
+                <span class="feature-note">Similar issues answered instantly from resolution library</span>
               </li>
               <li><i class="fa-light fa-check"></i> Resolution reuse scoring</li>
               <li><i class="fa-light fa-check"></i> Priority support and onboarding</li>
-              <li><i class="fa-light fa-check"></i> Usage dashboard and reporting</li>
+              <li><i class="fa-light fa-check"></i> Deflection dashboard &amp; time-recovery reporting</li>
             </ul>
             <a href="#contact" class="btn-primary-dr" style="width:100%; justify-content:center; margin-top:auto;">
-              <i class="fa-light fa-rocket"></i> Audit My Systems
+              <i class="fa-light fa-clock-rotate-left"></i> Time Recovery Audit
             </a>
           </div>
 
@@ -794,7 +772,7 @@
           <div class="price-card">
             <h3>Tier 3</h3>
             <div class="price-tier-name">Sovereign</div>
-            <p class="price-tagline">Full system autonomy with zero data liability. Custom architecture for enterprise security.</p>
+            <p class="price-tagline">Maximum security for high-compliance teams. Full control. Zero data liability.</p>
 
             <div class="price-platform-label">Platform fee</div>
             <div class="price-amount custom">Custom</div>
@@ -802,40 +780,40 @@
 
             <div class="price-resolution-rate">
               <div class="rate-label">Bring Your Own Key (BYOK)</div>
-              <div class="rate-value" style="font-size:1.05rem; padding:4px 0;">Your compute costs. Reduced resolution fees.</div>
-              <div class="rate-note">Nothing leaves your infrastructure</div>
+              <div class="rate-value" style="font-size:1rem; padding:4px 0; line-height:1.5;">Deploy our resolution engine within your own infrastructure using your own LLM keys.</div>
+              <div class="rate-note">Zero-data retention. Total IP control.</div>
             </div>
 
             <ul class="price-features">
               <li><i class="fa-light fa-check"></i> Everything in Professional</li>
-              <li><i class="fa-light fa-check"></i> BYOK: connect your own AI compute
-                <span class="feature-note">No AI costs routed through DevResolve</span>
+              <li><i class="fa-light fa-check"></i> BYOK — your compute, your keys
+                <span class="feature-note">Zero AI costs routed through DevResolve</span>
               </li>
-              <li><i class="fa-light fa-check"></i> On-premises and VPC deployment</li>
-              <li><i class="fa-light fa-check"></i> SSO, RBAC and audit controls</li>
-              <li><i class="fa-light fa-check"></i> Dedicated success engineer</li>
+              <li><i class="fa-light fa-check"></i> Zero-data retention policy</li>
+              <li><i class="fa-light fa-check"></i> Total intellectual property control</li>
+              <li><i class="fa-light fa-check"></i> Custom system synthesis &amp; dedicated success engineer</li>
             </ul>
             <a href="#contact" class="btn-ghost-dr" style="width:100%; justify-content:center; margin-top:auto;">
-              <i class="fa-light fa-rocket"></i> Audit My Systems
+              <i class="fa-light fa-clock-rotate-left"></i> Time Recovery Audit
             </a>
           </div>
 
         </div>
 
-        <!-- Resolution value definition -->
+        <!-- Resolution Guarantee -->
         <div class="resolution-def">
           <div class="resolution-def-icon"><i class="fa-light fa-circle-bolt"></i></div>
           <div>
-            <h4>What is a Resolution?</h4>
-            <p>A Resolution is any technical task successfully executed by DevResolve without human intervention. This includes a Jira ticket closed, a Slack incident triaged, a database sync completed, or a customer update delivered. You are only charged when the outcome is verified as complete.</p>
-            <p style="margin-top:12px; margin-bottom:16px;">Why pay per Resolution? Because we believe you should only pay for work that actually gets done. It aligns our success directly with your engineering efficiency.</p>
+            <h4>The Resolution Guarantee</h4>
+            <p>You only pay when a technical ticket is successfully resolved without human touch. A Resolution is a customer issue answered, triaged, or closed by DevResolve autonomously — no engineer involved, outcome verified.</p>
+            <p style="margin-top:12px; margin-bottom:16px;">If DevResolve cannot confidently resolve a ticket, it escalates with a full triage report rather than guessing. You are never charged for an incomplete or unverified result.</p>
             <div class="resolution-examples">
-              <span class="resolution-example"><i class="fa-light fa-check"></i> Jira ticket triaged and closed</span>
-              <span class="resolution-example"><i class="fa-light fa-check"></i> Slack incident thread processed</span>
-              <span class="resolution-example"><i class="fa-light fa-check"></i> Customer update delivered</span>
-              <span class="resolution-example"><i class="fa-light fa-check"></i> Internal record archived</span>
-              <span class="resolution-example"><i class="fa-light fa-check"></i> Repeat ticket prevented</span>
-              <span class="resolution-example"><i class="fa-light fa-check"></i> Database sync completed</span>
+              <span class="resolution-example"><i class="fa-light fa-check"></i> How-to documentation answered</span>
+              <span class="resolution-example"><i class="fa-light fa-check"></i> Configuration issue resolved</span>
+              <span class="resolution-example"><i class="fa-light fa-check"></i> Environment triage completed</span>
+              <span class="resolution-example"><i class="fa-light fa-check"></i> Bug vs. user-error correctly classified</span>
+              <span class="resolution-example"><i class="fa-light fa-check"></i> Repeat ticket auto-deflected</span>
+              <span class="resolution-example"><i class="fa-light fa-check"></i> Zero engineers interrupted</span>
             </div>
           </div>
         </div>
@@ -852,28 +830,32 @@
         </div>
         <div class="faq-list">
           <details class="faq-item">
-            <summary>How does DevResolve know which conversation to use?</summary>
-            <p>DevResolve automatically locates the relevant team conversation using your ticket reference. It searches across your connected channels and pulls the full thread with no manual linking or copy-pasting required.</p>
+            <summary>What kinds of tickets does DevResolve deflect?</summary>
+            <p>DevResolve is purpose-built for technical customer tickets that don't require an engineer to resolve: documentation and how-to requests, configuration guidance, environment setup checks, and common troubleshooting patterns. Anything where the answer already exists in your knowledge base — docs, Jira history, Slack threads — is a candidate for automated deflection.</p>
           </details>
           <details class="faq-item">
-            <summary>How is the internal note guaranteed to stay private?</summary>
-            <p>Internal notes and customer-facing updates are treated as two completely separate delivery paths from the moment they are generated. DevResolve enforces visibility at the integration layer using your ticketing platform's native access controls rather than relying on formatting differences alone.</p>
+            <summary>How does the triage and verification work?</summary>
+            <p>When a ticket arrives, DevResolve doesn't just look up an answer — it also gathers environment signals and log data to verify the customer's actual setup. If the issue is a simple misconfiguration or setup error, it resolves it directly. If the logs suggest a genuine bug, it escalates with a structured report so your engineers have full context from the start — not a vague complaint.</p>
           </details>
           <details class="faq-item">
-            <summary>What if my team wants to edit the resolution before it goes out?</summary>
-            <p>Every resolution goes through a team review step before anything is sent. You can approve it as-is or open an editor that lets you update the customer message and the internal notes independently. Nothing is delivered until someone on your team explicitly approves it.</p>
+            <summary>What data sources does DevResolve synthesize from?</summary>
+            <p>DevResolve synthesizes across your documentation (Confluence, Notion, GitHub wikis), your Jira ticket history, and your Slack channels. The more context it has, the higher your deflection rate. You control which sources it has access to.</p>
           </details>
           <details class="faq-item">
-            <summary>What ticketing systems does DevResolve support?</summary>
-            <p>Jira and Zendesk are both fully supported today. DevResolve is designed to be platform-neutral so adding new integrations does not require any changes to how resolutions are generated.</p>
+            <summary>Will DevResolve expose internal engineering details to customers?</summary>
+            <p>No. Customer-facing responses are generated from your public-facing knowledge base and sanitized before delivery. Internal engineering context — stack traces, architecture notes, infrastructure details — is handled in a separate pipeline and never surfaces in customer replies.</p>
           </details>
           <details class="faq-item">
-            <summary>What happens if a resolution cannot be completed?</summary>
-            <p>DevResolve validates every output before it enters your workflow. If the result does not meet quality standards, the request is automatically retried. If a valid result still cannot be produced, the ticket is flagged for manual review rather than failing silently. You are never charged for an incomplete resolution.</p>
+            <summary>Is our data used to train AI models?</summary>
+            <p>No. Your data is never used to train external AI models. This is a hard commitment, documented in our <a href="security.html" style="color:var(--accent); text-decoration:none;">Security &amp; IP Protection policy</a>. Sovereign plan customers additionally get zero-data retention and BYOK, so your data never leaves your own infrastructure.</p>
           </details>
           <details class="faq-item">
-            <summary>Can DevResolve run in our own infrastructure?</summary>
-            <p>Yes. DevResolve can be deployed within your own cloud environment or on-premises. Sovereign plan customers get full BYOK support, VPC deployment, and dedicated architecture guidance for teams with strict data residency requirements.</p>
+            <summary>What if DevResolve can't resolve a ticket?</summary>
+            <p>If the agent cannot produce a high-confidence answer, it escalates the ticket to your engineering queue — but it never sends a guess. When it escalates, it includes a structured triage report: what it found, what it checked, and what the likely issue is. Your engineers get context, not a blank ticket. You are never charged for unresolved tickets.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can we deploy within our own infrastructure?</summary>
+            <p>Yes. The Sovereign plan offers full BYOK support and on-premises or VPC deployment. You bring your own LLM keys, the resolution engine runs inside your environment, and zero data ever leaves your infrastructure. Designed for teams with strict data residency or compliance requirements.</p>
           </details>
         </div>
       </div>
@@ -883,13 +865,13 @@
     <section id="contact" class="cta-section">
       <div class="container">
         <p class="eyebrow">Get started</p>
-        <h2 class="display-2" style="margin-top:16px; margin-bottom:16px;">Your next incident closes itself.</h2>
-        <p class="lead" style="max-width:480px; margin:0 auto 40px;">Get early access and we will audit your current incident response workflow for free. No commitment required.</p>
+        <h2 class="display-2" style="margin-top:16px; margin-bottom:16px;">Your engineers shouldn't be a support team.</h2>
+        <p class="lead" style="max-width:520px; margin:0 auto 40px;">Request a free Time Recovery Audit and we'll analyze your incoming ticket volume to show you exactly how much engineering time DevResolve can buy back.</p>
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
           <a href="mailto:hello@devresolve.ai" class="btn-primary-dr">
-            <i class="fa-light fa-rocket"></i> Audit My Systems
+            <i class="fa-light fa-clock-rotate-left"></i> Time Recovery Audit
           </a>
-          <a href="#how-it-works" class="btn-ghost-dr">Learn more</a>
+          <a href="#how-it-works" class="btn-ghost-dr">See how it works</a>
         </div>
       </div>
     </section>
@@ -903,7 +885,7 @@
               <div class="brand-icon"><i class="fa-light fa-bolt"></i></div>
               <span class="brand-name">DevResolve</span>
             </a>
-            <p>DevResolve resolves incidents, documents outcomes, and closes tickets automatically.</p>
+            <p>Automated technical support deflection that gives engineers their time back.</p>
           </div>
           <div class="footer-col">
             <h4>Product</h4>
@@ -929,6 +911,7 @@
               <li><a href="security.html">Privacy &amp; Security</a></li>
               <li><a href="security.html">Terms of Service</a></li>
               <li><a href="security.html">IP Protection</a></li>
+              <li><a href="security.html">No AI Training Policy</a></li>
               <li><a href="mailto:legal@devresolve.ai">DPA Request</a></li>
             </ul>
           </div>
@@ -944,12 +927,12 @@
             letter-spacing: 0.03em;
           ">
             <i class="fa-light fa-shield-halved" style="color:#818cf8;"></i>
-            Proprietary Agentic Logic Protected by DevResolve IP Protocols
+            Proprietary Agentic Logic Protected by DevResolve IP Protocols &nbsp;·&nbsp; No AI Training on Customer Data
           </span>
         </div>
 
         <div class="footer-bottom">
-          <span>&copy; 2026 DevResolve, Inc. All rights reserved. All product names, agentic workflows, and the Resolution Engine are proprietary to DevResolve, Inc. Unauthorized reproduction is prohibited.</span>
+          <span>&copy; 2026 DevResolve, Inc. All rights reserved. All product names, agentic workflows, and the TraceLayer Resolution Engine are proprietary to DevResolve, Inc. Unauthorized reproduction is prohibited.</span>
           <div class="social-links">
             <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="#"><i class="fa-brands fa-linkedin"></i></a>
