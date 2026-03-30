@@ -1,7 +1,7 @@
 <?php
     // Load recipient from environment variable — set CONTACT_EMAIL on your server or in Vercel env vars.
     // Never hardcode credentials or email addresses in this file.
-    $recipient = getenv('CONTACT_EMAIL') ?: 'hello@devresolve.ai';
+    $recipient = getenv('CONTACT_EMAIL') ?: 'devresolve.ai@outlook.com';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name    = strip_tags(trim($_POST["name"]));
