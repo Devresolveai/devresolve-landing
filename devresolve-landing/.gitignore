@@ -1,0 +1,20 @@
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.production
+.env.staging
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependency folders (if a build step is ever added)
+node_modules/
+vendor/
+
+# Build output
+dist/
+build/
+.vercel/
