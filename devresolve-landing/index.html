@@ -401,7 +401,7 @@
             <span class="accent-text">Automatically.</span>
           </h1>
           <p class="lead-lg" style="max-width:580px; margin:0 auto;">
-            DevResolve reads your Slack resolution threads, synthesizes a structured SOP with Claude AI, posts the right note to the right audience in Jira, and closes the ticket &mdash; without anyone touching a keyboard.
+            DevResolve monitors your team's resolution conversations, builds a structured resolution document, delivers the right message to the right audience in your ticketing system, and closes the ticket &mdash; without anyone touching a keyboard.
           </p>
           <div class="hero-actions">
             <a href="#contact" class="btn-primary-dr">
@@ -417,31 +417,39 @@
             <div class="hero-meta-item"><i class="fa-light fa-check-circle"></i> Jira closes itself</div>
           </div>
 
-          <!-- Terminal mockup -->
+          <!-- Activity feed mockup -->
           <div class="terminal">
             <div class="terminal-bar">
               <span class="t-dot t-red"></span>
               <span class="t-dot t-yellow"></span>
               <span class="t-dot t-green"></span>
-              <span class="terminal-label">devresolve &mdash; sop synthesis &bull; ENG-1847</span>
+              <span class="terminal-label">devresolve &mdash; incident resolved &bull; ENG-1847</span>
             </div>
             <div class="terminal-body">
-              <div><span class="t-comment">// Slack thread harvested &mdash; 14 messages, ticket ENG-1847</span></div>
-              <div style="margin-top:12px"><span class="t-tag">[synthesis]</span> <span class="t-white">Sending to Claude&hellip;</span> <span class="t-dim">model=claude-sonnet-4-6</span></div>
-              <div style="margin-top:12px"><span class="t-key">{</span></div>
-              <div class="t-indent"><span class="t-key">"ticket_id"</span><span class="t-white">:</span> <span class="t-string">"ENG-1847"</span><span class="t-white">,</span></div>
-              <div class="t-indent"><span class="t-key">"root_cause"</span><span class="t-white">:</span> <span class="t-string">"Redis TTL misconfiguration on auth-service replica set"</span><span class="t-white">,</span></div>
-              <div class="t-indent"><span class="t-key">"confidence_score"</span><span class="t-white">:</span> <span class="t-number">0.94</span><span class="t-white">,</span></div>
-              <div class="t-indent"><span class="t-key">"resolution_summary"</span><span class="t-white">: {</span></div>
-              <div class="t-indent2"><span class="t-key">"public_resolution"</span><span class="t-white">:</span> <span class="t-string">"Your session was reset due to a brief authentication outage&hellip;"</span><span class="t-white">,</span></div>
-              <div class="t-indent2"><span class="t-key">"technical_root_cause"</span><span class="t-white">:</span> <span class="t-string">"TTL=0 set on auth:session:* keys after replica failover&hellip;"</span></div>
-              <div class="t-indent"><span class="t-white">},</span></div>
-              <div class="t-indent"><span class="t-key">"deflection_score"</span><span class="t-white">:</span> <span class="t-number">0.88</span></div>
-              <div><span class="t-key">}</span></div>
-              <div style="margin-top:12px"><span class="t-tag">[jira]</span> <span class="t-white">Public comment posted</span> <span class="t-dim">id=30291</span></div>
-              <div><span class="t-tag">[jira]</span> <span class="t-white">Internal note posted</span> <span class="t-dim">visibility=Service Desk Team</span></div>
-              <div><span class="t-tag">[jira]</span> <span class="t-string">Ticket ENG-1847 transitioned &rarr; Done</span></div>
-              <div><span class="t-tag">[slack]</span> <span class="t-string">&#10003; Resolution sent to customer and internal note archived.</span></div>
+              <div><span class="t-comment">// Incident detected &mdash; ENG-1847: Auth service degradation</span></div>
+              <div style="margin-top:14px; display:flex; align-items:flex-start; gap:12px;">
+                <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
+                <span class="t-white">Conversation context captured from team channel</span>
+              </div>
+              <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
+                <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
+                <span class="t-white">Root cause identified &mdash; <span class="t-string">auth service configuration drift</span></span>
+              </div>
+              <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
+                <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
+                <span class="t-white">Resolution document generated &mdash; <span class="t-dim">high confidence</span></span>
+              </div>
+              <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
+                <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
+                <span class="t-white">Customer update drafted &mdash; plain language, no internal detail</span>
+              </div>
+              <div style="margin-top:8px; display:flex; align-items:flex-start; gap:12px;">
+                <span style="color:var(--accent-green); flex-shrink:0;">&#10003;</span>
+                <span class="t-white">Engineering notes secured &mdash; <span class="t-dim">restricted to internal team</span></span>
+              </div>
+              <div style="margin-top:16px; padding:14px 16px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:8px;">
+                <span style="color:var(--accent-green); font-weight:600;">&#10003; ENG-1847 closed &mdash; resolution delivered to customer &bull; internal notes archived</span>
+              </div>
             </div>
           </div>
         </div>
@@ -494,8 +502,8 @@
           </div>
           <div class="flow-step">
             <div class="step-num">03</div>
-            <h3>SOP is synthesized</h3>
-            <p>Claude reads the thread and produces a structured SOP: root cause, resolution steps, deflection keywords, and confidence score.</p>
+            <h3>Resolution is synthesized</h3>
+            <p>DevResolve's AI engine reads the thread and produces a structured resolution document: root cause, action steps, affected systems, and a reusability score.</p>
           </div>
           <div class="flow-step">
             <div class="step-num">04</div>
@@ -524,9 +532,9 @@
             <div class="workflow-arrow"><i class="fa-light fa-arrow-right"></i></div>
             <div class="workflow-node active">
               <span class="node-icon"><i class="fa-light fa-brain" style="color:#818cf8;"></i></span>
-              <h4>Claude Synthesis</h4>
-              <p>SOP + deflection profile</p>
-              <span class="workflow-badge badge-blue">0.94 confidence</span>
+              <h4>AI Synthesis</h4>
+              <p>Resolution + reuse profile</p>
+              <span class="workflow-badge badge-blue">High confidence</span>
             </div>
             <div class="workflow-arrow"><i class="fa-light fa-arrow-right"></i></div>
             <div class="workflow-node">
@@ -559,47 +567,47 @@
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-split"></i></div>
             <h3>Strict audience separation</h3>
-            <p>Public resolution goes to the customer portal. Technical root cause is an internal-only note with <code style="color:var(--accent);font-size:0.8em;">sd.public.comment: internal:true</code> enforced at the API level. They can never mix.</p>
+            <p>Customer-facing resolution and internal engineering notes are generated, stored, and delivered as two completely separate artifacts. They are enforced at the delivery layer &mdash; mixing is architecturally impossible.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-wand-magic-sparkles"></i></div>
-            <h3>Structured SOP synthesis</h3>
-            <p>Claude extracts root cause, error codes, resolution steps, environment context, affected components, and a deflection score &mdash; all as validated Pydantic schema, not freeform text.</p>
+            <h3>Structured resolution synthesis</h3>
+            <p>DevResolve's AI engine extracts root cause, resolution steps, affected systems, environment signals, and a reusability score from your team's existing conversation &mdash; structured output, not a text summary.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-shield-halved"></i></div>
-            <h3>Support deflection engine</h3>
-            <p>Every SOP generates 10-30 deflection keywords and a self-serviceability score. Future inbound tickets matching this pattern can be resolved automatically without an agent.</p>
+            <h3>Ticket deflection engine</h3>
+            <p>Every resolved incident builds your deflection library. When a similar issue comes in, DevResolve surfaces the proven resolution automatically &mdash; reducing repeat tickets without adding agent headcount.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-timeline"></i></div>
             <h3>Full incident timeline</h3>
-            <p>Every SOP captures a timestamped incident timeline extracted from the Slack thread &mdash; when the deploy happened, when the first alert fired, when the fix landed.</p>
+            <p>Every resolution document includes a timestamped incident timeline &mdash; when the issue started, when the team engaged, when the fix landed. A complete record without anyone writing a post-mortem.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-pencil"></i></div>
-            <h3>Human-in-the-loop editing</h3>
-            <p>Agents get a Slack approval card with Approve and Edit Draft buttons. Edit opens a modal pre-populated with both fields. The 200 OK fires before the modal opens &mdash; no Slack timeouts.</p>
+            <h3>Human-in-the-loop review</h3>
+            <p>Every resolution routes through a team review step before anything reaches the customer. Approve it as-is or edit both the customer message and the internal notes independently &mdash; then send with one click.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-plug"></i></div>
             <h3>Ticketing-system agnostic</h3>
-            <p>Jira Service Management is live today. Zendesk support is in the pipeline. The SOP schema is ticketing-system neutral &mdash; adapters translate, synthesis doesn't change.</p>
+            <p>Jira is fully supported today. Additional platforms are in the pipeline. DevResolve's resolution engine is platform-neutral &mdash; the same AI output routes to whichever ticketing system your team uses.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-rotate"></i></div>
-            <h3>Exponential backoff built in</h3>
-            <p>Claude API calls retry automatically on rate limits with exponential backoff via Tenacity. Up to 5 attempts, 2&ndash;60s wait. Your pipeline doesn't drop incidents under load.</p>
+            <h3>Resilient by design</h3>
+            <p>DevResolve is built to stay online under load. AI requests retry automatically on transient failures with progressive back-off. Your incident pipeline doesn't stall because of a momentary upstream issue.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-light fa-database"></i></div>
-            <h3>Versioned SOP storage</h3>
-            <p>Every SOP is written to disk as versioned JSON. Re-runs create new versions, not overwrites. Full audit trail of every resolution ever synthesized.</p>
+            <h3>Versioned resolution history</h3>
+            <p>Every resolution is stored with full version history. Re-running synthesis on the same ticket creates a new version, never an overwrite. You always have a complete audit trail of how every incident was handled.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon"><i class="fa-light fa-code"></i></div>
-            <h3>ASCII-safe output</h3>
-            <p>The synthesis prompt enforces strict 7-bit ASCII output &mdash; no smart quotes, no em dashes, no encoding artifacts. Jira renders it cleanly every time.</p>
+            <div class="feature-icon"><i class="fa-light fa-circle-check"></i></div>
+            <h3>Clean output, every time</h3>
+            <p>DevResolve normalizes all AI output before it reaches your ticketing system &mdash; consistent formatting, no encoding artifacts, no rendering failures across tools. What you approve is exactly what gets delivered.</p>
           </div>
         </div>
       </div>
@@ -680,7 +688,7 @@
             <div class="price-period">per month &bull; up to 200 tickets</div>
             <ul class="price-features">
               <li><i class="fa-light fa-check"></i> Slack + Jira integration</li>
-              <li><i class="fa-light fa-check"></i> SOP synthesis with Claude</li>
+              <li><i class="fa-light fa-check"></i> AI-powered resolution synthesis</li>
               <li><i class="fa-light fa-check"></i> Public + internal note split</li>
               <li><i class="fa-light fa-check"></i> Versioned SOP storage</li>
               <li><i class="fa-light fa-check"></i> Slack approval card</li>
@@ -727,28 +735,28 @@
         </div>
         <div class="faq-list">
           <details class="faq-item">
-            <summary>How does DevResolve find the right Slack thread?</summary>
-            <p>DevResolve first tries Slack's <code>search.messages</code> API using the ticket ID as the query. If your bot token doesn't have search scope, it falls back to paginating the configured default channel looking for messages that mention the ticket ID.</p>
+            <summary>How does DevResolve know which conversation to use?</summary>
+            <p>DevResolve automatically locates the relevant team conversation using your ticket reference. It searches across your connected channels and pulls the full thread &mdash; no manual linking or copy-pasting required.</p>
           </details>
           <details class="faq-item">
-            <summary>How is the internal note kept private from customers?</summary>
-            <p>Two layers of enforcement: (1) a <code>visibility: { type: "role", value: "Service Desk Team" }</code> field in the comment POST body, and (2) a separate PUT to <code>/comment/{id}/properties/sd.public.comment</code> with <code>{"internal": true}</code>. The properties array in the POST is silently ignored by the Jira API &mdash; the separate PUT is the only way to set it correctly.</p>
+            <summary>How is the internal note guaranteed to stay private?</summary>
+            <p>Internal notes and customer-facing updates are treated as two separate delivery paths from the moment they're generated. DevResolve enforces visibility at the integration layer using your ticketing platform's native access controls &mdash; not just formatting differences.</p>
           </details>
           <details class="faq-item">
-            <summary>What if the agent wants to edit the SOP before it goes to the customer?</summary>
-            <p>The Slack approval card includes an Edit Draft button. Clicking it opens a pre-populated modal with both the customer-facing resolution and the technical root cause in separate fields. Save & Approve then posts both to Jira and transitions the ticket.</p>
+            <summary>What if my team wants to edit the resolution before it goes out?</summary>
+            <p>Every resolution goes through a team review step first. You can approve it as-is or open an editor that lets you update the customer message and the internal notes independently. Nothing is sent until someone on your team explicitly approves it.</p>
           </details>
           <details class="faq-item">
             <summary>What ticketing systems are supported?</summary>
-            <p>Jira Service Management (Cloud and Server v8+) is fully supported today. Zendesk support is in active development &mdash; the SOP synthesis is ticketing-system agnostic, so only the adapter layer needs to be built.</p>
+            <p>Jira is fully supported today, including both cloud and self-hosted deployments. Zendesk support is in active development. DevResolve is designed to be platform-neutral &mdash; adding new integrations doesn't require changes to how resolutions are generated.</p>
           </details>
           <details class="faq-item">
-            <summary>What happens if Claude returns a malformed response?</summary>
-            <p>The synthesis pipeline validates every response against a strict Pydantic schema. If validation fails, a <code>ValueError</code> is raised with the raw output attached. Claude API calls also retry automatically on rate limits with exponential backoff (up to 5 attempts, 2&ndash;60s wait).</p>
+            <summary>What happens if the AI output isn't usable?</summary>
+            <p>DevResolve validates every AI response before it enters your workflow. If the output doesn't meet quality standards, the request is automatically retried. If it still can't produce a valid result, the ticket is flagged for manual review rather than silently failing.</p>
           </details>
           <details class="faq-item">
-            <summary>Can I run this on-prem?</summary>
-            <p>Yes. DevResolve is a FastAPI server with no hard cloud dependencies. It runs anywhere Python 3.12 runs. Enterprise plans include VPC deployment guides and support for self-hosted LLMs.</p>
+            <summary>Can DevResolve run in our own infrastructure?</summary>
+            <p>Yes. DevResolve can be deployed within your own cloud environment or on-premises. It has no hard dependencies on external cloud services. Enterprise plans include deployment support, VPC configuration, and options for teams with strict data residency requirements.</p>
           </details>
         </div>
       </div>
