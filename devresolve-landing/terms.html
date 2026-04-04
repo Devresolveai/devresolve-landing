@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Terms of Service — DevResolve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e2e8f0; line-height: 1.75; }
+      .container { max-width: 760px; margin: 0 auto; padding: 64px 24px 96px; }
+      h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+      .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 48px; }
+      h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; color: #fff; margin: 36px 0 12px; }
+      p { color: #94a3b8; margin-bottom: 16px; }
+      ul { color: #94a3b8; padding-left: 24px; margin-bottom: 16px; }
+      ul li { margin-bottom: 8px; }
+      a { color: #6366f1; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .nav { padding: 20px 24px; border-bottom: 1px solid #1e293b; }
+      .nav a { color: #94a3b8; font-size: 0.9rem; }
+      .nav a span { color: #6366f1; }
+    </style>
+  </head>
+  <body>
+    <div class="nav"><a href="/"><span>Dev</span>Resolve</a></div>
+    <div class="container">
+      <h1>Terms of Service</h1>
+      <p class="meta">Last updated: April 4, 2026 &nbsp;·&nbsp; DevResolve, Inc.</p>
+
+      <h2>1. Acceptance</h2>
+      <p>By accessing or using DevResolve ("the Service"), you agree to these Terms. If you are using DevResolve on behalf of an organisation, you represent that you have authority to bind that organisation to these Terms.</p>
+
+      <h2>2. The Service</h2>
+      <p>DevResolve provides an autonomous ticket deflection engine that intercepts support tickets, synthesises responses from your connected knowledge sources using AI, and presents them for human approval before posting. The Service connects to Jira, Zendesk, Slack, Confluence, Notion, and other platforms via APIs and webhooks configured by you.</p>
+
+      <h2>3. Accounts and Access</h2>
+      <ul>
+        <li>You are responsible for maintaining the security of your webhook secrets and API credentials.</li>
+        <li>You must not share your organisation credentials with unauthorised parties.</li>
+        <li>DevResolve may suspend access if we detect misuse or abuse of the platform.</li>
+      </ul>
+
+      <h2>4. Billing</h2>
+      <p>DevResolve uses a hybrid billing model: a monthly platform fee plus a per-resolution charge. A "resolution" is a ticket that DevResolve closes (confidence ≥ 0.90) or presents as an approved draft (confidence 0.70–0.89). Escalations (confidence &lt; 0.70) are never charged.</p>
+      <p>Billing is processed by Stripe. By subscribing, you agree to Stripe's terms of service. Subscriptions renew monthly. You may cancel at any time; no refunds are issued for partial months.</p>
+
+      <h2>5. Acceptable Use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use DevResolve to process tickets containing regulated health data (HIPAA) or payment card data (PCI-DSS) without a signed data processing agreement.</li>
+        <li>Reverse engineer, decompile, or attempt to extract DevResolve's source code.</li>
+        <li>Resell or sublicense DevResolve without written consent.</li>
+        <li>Use the Service to generate harmful, deceptive, or illegal content.</li>
+      </ul>
+
+      <h2>6. Your Data</h2>
+      <p>You retain all ownership of your ticket data, documentation, and knowledge sources. DevResolve processes your data solely to provide the Service. See our <a href="/privacy">Privacy Policy</a> for details on how data is handled. Our zero-knowledge architecture means ticket content is never stored by DevResolve.</p>
+
+      <h2>7. AI-Generated Content</h2>
+      <p>DevResolve uses AI (Anthropic Claude) to generate resolution drafts. All AI-generated content is presented for human review and approval before being sent to customers. DevResolve does not guarantee the accuracy of AI-generated responses. You are responsible for reviewing and approving any content before it is posted to your customers.</p>
+
+      <h2>8. Service Availability</h2>
+      <p>DevResolve aims for high availability but does not guarantee uninterrupted service. Planned maintenance will be communicated in advance where possible. DevResolve is not liable for losses resulting from service interruptions.</p>
+
+      <h2>9. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, DevResolve's total liability for any claim arising from use of the Service is limited to the fees paid by you in the 3 months preceding the claim. DevResolve is not liable for indirect, incidental, or consequential damages.</p>
+
+      <h2>10. Changes to Terms</h2>
+      <p>We may update these Terms from time to time. Continued use of the Service after changes constitutes acceptance. Material changes will be communicated by email.</p>
+
+      <h2>11. Contact</h2>
+      <p>Questions about these Terms: <a href="mailto:devresolve.ai@outlook.com">devresolve.ai@outlook.com</a><br>
+      DevResolve, Inc. &nbsp;·&nbsp; <a href="https://devresolve.ai">devresolve.ai</a></p>
+    </div>
+  </body>
+</html>

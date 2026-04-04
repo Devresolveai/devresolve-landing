@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Privacy Policy — DevResolve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e2e8f0; line-height: 1.75; }
+      .container { max-width: 760px; margin: 0 auto; padding: 64px 24px 96px; }
+      h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+      .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 48px; }
+      h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; color: #fff; margin: 36px 0 12px; }
+      p { color: #94a3b8; margin-bottom: 16px; }
+      ul { color: #94a3b8; padding-left: 24px; margin-bottom: 16px; }
+      ul li { margin-bottom: 8px; }
+      a { color: #6366f1; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .nav { padding: 20px 24px; border-bottom: 1px solid #1e293b; }
+      .nav a { color: #94a3b8; font-size: 0.9rem; }
+      .nav a span { color: #6366f1; }
+    </style>
+  </head>
+  <body>
+    <div class="nav"><a href="/"><span>Dev</span>Resolve</a></div>
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p class="meta">Last updated: April 4, 2026 &nbsp;·&nbsp; DevResolve, Inc.</p>
+
+      <h2>1. Overview</h2>
+      <p>DevResolve, Inc. ("DevResolve", "we", "us") operates the DevResolve autonomous ticket deflection platform accessible at devresolve.ai and api.devresolve.ai. This Privacy Policy explains what data we collect, how we use it, and your rights.</p>
+
+      <h2>2. Zero-Knowledge Architecture</h2>
+      <p>DevResolve is built on a zero-knowledge principle. When a ticket is processed:</p>
+      <ul>
+        <li>Ticket content, Slack thread messages, and knowledge source results are loaded into RAM only for the duration of the AI synthesis call.</li>
+        <li>This content is explicitly deleted from memory after synthesis completes.</li>
+        <li>No ticket body text, customer messages, or knowledge source content is written to our database, vector store, or logs.</li>
+        <li>Your data is never used to train AI models.</li>
+      </ul>
+
+      <h2>3. What We Store</h2>
+      <p>Our database retains only metadata — never content:</p>
+      <ul>
+        <li><strong>Organisation record:</strong> company name, plan tier, webhook secret (hashed), Stripe customer ID.</li>
+        <li><strong>Resolution record per ticket:</strong> ticket ID (e.g. "DEV-123"), confidence score, resolution status (success / pending_review / escalated), billing event ID, timestamps.</li>
+        <li><strong>Knowledge source configuration:</strong> connector type (Confluence, Notion, etc.), API credentials (stored encrypted), space keys.</li>
+      </ul>
+      <p>We do not store ticket summaries, descriptions, customer names, email addresses, or any personally identifiable information from processed tickets.</p>
+
+      <h2>4. Atlassian Integration</h2>
+      <p>When you connect DevResolve to Jira via webhook, DevResolve receives Jira webhook payloads containing ticket keys and metadata. This data is processed in real time and not persisted beyond the metadata described in Section 3. DevResolve requests only the minimum Jira permissions required to read issue data and post comments.</p>
+
+      <h2>5. Third-Party Services</h2>
+      <ul>
+        <li><strong>Anthropic (Claude):</strong> Ticket context is sent to Anthropic's API for AI synthesis. Anthropic's data processing agreement applies. Data is not retained by Anthropic beyond the API call per their zero-retention policy for API customers.</li>
+        <li><strong>Stripe:</strong> Payment and billing data is handled by Stripe, Inc. DevResolve does not store payment card information.</li>
+        <li><strong>Pinecone:</strong> Ingested documentation vectors are stored in Pinecone namespaced per organisation. Raw document text is not stored — only vector embeddings.</li>
+      </ul>
+
+      <h2>6. Data Retention</h2>
+      <p>Resolution metadata is retained for the duration of your subscription and deleted within 30 days of account closure. Knowledge source credentials are deleted immediately upon disconnection.</p>
+
+      <h2>7. Security</h2>
+      <ul>
+        <li>All webhook requests are authenticated via HMAC-SHA256 signature verification.</li>
+        <li>All data in transit is encrypted via TLS 1.2+.</li>
+        <li>Database access is restricted to application containers on a private network.</li>
+        <li>SSH access to production servers requires key-based authentication only.</li>
+      </ul>
+
+      <h2>8. Your Rights</h2>
+      <p>You may request deletion of your organisation's data at any time by contacting us. Because we store only metadata (no ticket content or personal data from tickets), deletion requests are fulfilled within 7 business days.</p>
+
+      <h2>9. Contact</h2>
+      <p>Privacy questions: <a href="mailto:devresolve.ai@outlook.com">devresolve.ai@outlook.com</a><br>
+      DevResolve, Inc. &nbsp;·&nbsp; <a href="https://devresolve.ai">devresolve.ai</a></p>
+    </div>
+  </body>
+</html>
