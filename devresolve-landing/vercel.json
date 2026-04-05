@@ -4,7 +4,8 @@
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/security", "destination": "/security.html" },
-    { "source": "/atlassian/callback", "destination": "/atlassian-callback.html" }
+    { "source": "/atlassian/callback", "destination": "/atlassian-callback.html" },
+    { "source": "/atlassian/:path*", "destination": "/atlassian-callback.html" }
   ],
   "headers": [
     {
