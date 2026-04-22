@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Privacy Policy �&rdquo; DevResolve</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e2e8f0; line-height: 1.75; }
-      .container { max-width: 760px; margin: 0 auto; padding: 64px 24px 96px; }
-      h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-      .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 48px; }
-      h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; color: #fff; margin: 36px 0 12px; }
-      p { color: #94a3b8; margin-bottom: 16px; }
-      ul { color: #94a3b8; padding-left: 24px; margin-bottom: 16px; }
-      ul li { margin-bottom: 8px; }
-      a { color: #6366f1; text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      .nav { padding: 20px 24px; border-bottom: 1px solid #1e293b; }
-      .nav a { color: #94a3b8; font-size: 0.9rem; }
-      .nav a span { color: #6366f1; }
-    </style>
-  </head>
-  <body>
-    <div class="nav"><a href="/"><span>Dev</span>Resolve</a></div>
-    <div class="container">
-      <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: April 4, 2026 &nbsp;·&nbsp; DevResolve, LLC</p>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — DevResolve</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Space Grotesk',sans-serif;background:#0a0a0f;color:#e2e8f0;line-height:1.7;-webkit-font-smoothing:antialiased}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;padding:0 32px;height:64px;background:rgba(10,10,15,0.92);border-bottom:1px solid rgba(99,102,241,0.18);backdrop-filter:blur(12px)}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:#e2e8f0;text-decoration:none}
+    .logo-mark{width:32px;height:32px;background:#6366f1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+    .wrap{max-width:760px;margin:0 auto;padding:64px 24px 96px}
+    h1{font-size:2rem;font-weight:700;color:#fff;margin-bottom:8px}
+    .updated{color:#64748b;font-size:0.85rem;margin-bottom:48px}
+    h2{font-size:1.1rem;font-weight:700;color:#e2e8f0;margin:40px 0 12px}
+    p{color:#94a3b8;margin-bottom:16px;font-size:0.95rem}
+    ul{color:#94a3b8;padding-left:20px;margin-bottom:16px;font-size:0.95rem}
+    ul li{margin-bottom:6px}
+    a{color:#6366f1}
+    .back{display:inline-block;margin-bottom:32px;color:#64748b;font-size:0.85rem;text-decoration:none}
+    .back:hover{color:#e2e8f0}
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="/">
+      <span class="logo-mark">⚡</span>
+      DevResolve
+    </a>
+  </nav>
+  <div class="wrap">
+    <a href="/" class="back">← Back to DevResolve</a>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: April 22, 2026</p>
 
-      <h2>1. Overview</h2>
-      <p>DevResolve, LLC ("DevResolve", "we", "us") operates the DevResolve autonomous ticket deflection platform accessible at devresolve.ai and api.devresolve.ai. This Privacy Policy explains what data we collect, how we use it, and your rights.</p>
+    <p>DevResolve, LLC ("DevResolve", "we", "us", or "our") operates the DevResolve platform, including the chat widget, API, and dashboard. This Privacy Policy explains how we collect, use, and protect information when you use our services.</p>
 
-      <h2>2. Zero-Knowledge Architecture</h2>
-      <p>DevResolve is built on a zero-knowledge principle. When a ticket is processed:</p>
-      <ul>
-        <li>Ticket content, Slack thread messages, and knowledge source results are loaded into RAM only for the duration of the AI synthesis call.</li>
-        <li>This content is explicitly deleted from memory after synthesis completes.</li>
-        <li>No ticket body text, customer messages, or knowledge source content is written to our database, vector store, or logs.</li>
-        <li>Your data is never used to train AI models.</li>
-      </ul>
+    <h2>1. Information We Collect</h2>
+    <p><strong>Account information:</strong> When you sign up, we collect your email address, company name, and billing information processed via Stripe.</p>
+    <p><strong>Usage data:</strong> We log API requests, chat sessions, escalation events, and error rates to operate and improve the service. Chat session content (questions and answers) is used to generate support tickets and docs gap reports.</p>
+    <p><strong>Knowledge base content:</strong> When you connect a knowledge source (Confluence, Notion, GitHub, etc.), we fetch and embed document content into a vector database to power search. We do not store the raw document content permanently — only the vector embeddings.</p>
 
-      <h2>3. What We Store</h2>
-      <p>Our database retains only metadata �&rdquo; never content:</p>
-      <ul>
-        <li><strong>Organisation record:</strong> company name, plan tier, webhook secret (hashed), Stripe customer ID.</li>
-        <li><strong>Resolution record per ticket:</strong> ticket ID (e.g. "DEV-123"), confidence score, resolution status (success / pending_review / escalated), billing event ID, timestamps.</li>
-        <li><strong>Knowledge source configuration:</strong> connector type (Confluence, Notion, etc.), API credentials (stored encrypted), space keys.</li>
-      </ul>
-      <p>We do not store ticket summaries, descriptions, customer names, email addresses, or any personally identifiable information from processed tickets.</p>
+    <h2>2. How We Use Information</h2>
+    <ul>
+      <li>To provide, operate, and improve the DevResolve service</li>
+      <li>To create support tickets and escalation notifications on your behalf</li>
+      <li>To generate docs gap reports for your team</li>
+      <li>To send transactional emails (escalation alerts, onboarding)</li>
+      <li>To detect and prevent abuse</li>
+    </ul>
 
-      <h2>4. Atlassian Integration</h2>
-      <p>When you connect DevResolve to Jira via webhook, DevResolve receives Jira webhook payloads containing ticket keys and metadata. This data is processed in real time and not persisted beyond the metadata described in Section 3. DevResolve requests only the minimum Jira permissions required to read issue data and post comments.</p>
+    <h2>3. Data Sharing</h2>
+    <p>We do not sell your data. We share data only with:</p>
+    <ul>
+      <li><strong>Stripe</strong> — payment processing</li>
+      <li><strong>Anthropic / OpenAI</strong> — LLM inference for answer synthesis (queries only, no persistent storage on their side)</li>
+      <li><strong>Pinecone</strong> — vector search (embeddings only, no raw text)</li>
+      <li><strong>SendGrid</strong> — transactional email delivery</li>
+      <li>Your configured ticketing platform (Zendesk, Jira, or Linear) — ticket content</li>
+    </ul>
 
-      <h2>5. Third-Party Services</h2>
-      <ul>
-        <li><strong>Anthropic (Claude):</strong> Ticket context is sent to Anthropic's API for AI synthesis. Anthropic's data processing agreement applies. Data is not retained by Anthropic beyond the API call per their zero-retention policy for API customers.</li>
-        <li><strong>Stripe:</strong> Payment and billing data is handled by Stripe, Inc. DevResolve does not store payment card information.</li>
-        <li><strong>Pinecone:</strong> Ingested documentation vectors are stored in Pinecone namespaced per organisation. Raw document text is not stored �&rdquo; only vector embeddings.</li>
-      </ul>
+    <h2>4. Data Retention</h2>
+    <p>Chat session history is retained in-memory for 30 minutes, then discarded. Docs gap logs are retained for 90 days. Vector embeddings are retained until you delete your account or remove the source.</p>
 
-      <h2>6. Data Retention</h2>
-      <p>Resolution metadata is retained for the duration of your subscription and deleted within 30 days of account closure. Knowledge source credentials are deleted immediately upon disconnection.</p>
+    <h2>5. Sovereign Plan</h2>
+    <p>Sovereign plan customers run DevResolve entirely within their own infrastructure. No data passes through DevResolve servers. Zero data retention on our side.</p>
 
-      <h2>7. Security</h2>
-      <ul>
-        <li>All webhook requests are authenticated via HMAC-SHA256 signature verification.</li>
-        <li>All data in transit is encrypted via TLS 1.2+.</li>
-        <li>Database access is restricted to application containers on a private network.</li>
-        <li>SSH access to production servers requires key-based authentication only.</li>
-      </ul>
+    <h2>6. Security</h2>
+    <p>All data is encrypted in transit (TLS 1.2+) and at rest. We use fail2ban, UFW firewall, SSH key-only access, and non-root deployment on our production infrastructure. We conduct regular security audits.</p>
 
-      <h2>8. Your Rights</h2>
-      <p>You may request deletion of your organisation's data at any time by contacting us. Because we store only metadata (no ticket content or personal data from tickets), deletion requests are fulfilled within 7 business days.</p>
+    <h2>7. Your Rights</h2>
+    <p>You may request deletion of your account and all associated data at any time by emailing <a href="mailto:devresolve.ai@outlook.com">devresolve.ai@outlook.com</a>. We will process deletion requests within 30 days.</p>
 
-      <h2>9. Contact</h2>
-      <p>Privacy questions: <a href="mailto:devresolve.ai@outlook.com">devresolve.ai@outlook.com</a><br>
-      DevResolve, LLC &nbsp;·&nbsp; <a href="https://devresolve.ai">devresolve.ai</a></p>
-    </div>
-  </body>
+    <h2>8. Contact</h2>
+    <p>Questions about this policy? Email <a href="mailto:devresolve.ai@outlook.com">devresolve.ai@outlook.com</a>.</p>
+  </div>
+</body>
 </html>
