@@ -331,7 +331,7 @@
       /* ── Pricing ─────────────────────────────────────────────────────── */
       .pricing-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 24px;
         max-width: 1100px;
         margin: 0 auto;
@@ -717,54 +717,66 @@
       <div class="section-label">Pricing</div>
       <h2>Pay per answer. Not per seat.</h2>
       <p class="section-sub">
-        A flat platform fee runs the engine. You pay only when the bot answers a question.
+        Flat platform fee. Answers included. Overage only when you grow beyond your plan.
         Escalations to Zendesk, Jira, or Linear are always free.
       </p>
 
       <div class="pricing-grid">
-        <!-- Resolve -->
+        <!-- Starter -->
         <div class="price-card">
-          <div class="price-plan">Resolve</div>
-          <div>
-            <span class="price-main-val">$79<span class="price-period">&thinsp;/mo</span></span>
+          <p class="price-plan">Starter</p>
+          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:6px;">
+            <span class="price-main-val">$249</span>
           </div>
-          <div class="price-period" style="margin-bottom:6px;">platform fee</div>
-          <div class="price-metered">+ $1.50 per answer</div>
-          <hr class="price-divider">
+          <p class="price-period">platform fee</p>
+          <p class="price-metered">200 answers included &middot; $2.00 per answer after</p>
+          <hr class="price-divider"/>
           <ul class="price-features">
             <li>Chat widget embed (one script tag)</li>
-            <li>Confluence knowledge base</li>
+            <li>1 knowledge source (Confluence or docs URL)</li>
             <li>Zendesk, Jira, or Linear escalation</li>
             <li>Docs gap report</li>
             <li>Email + Teams notifications</li>
-            <li>Up to 500 answers/month included</li>
           </ul>
-          <a class="btn btn-outline" href="https://api.devresolve.ai/onboard/plan" style="text-align:center;">
-            Get started with Resolve
-          </a>
+          <a href="https://api.devresolve.ai/onboard/plan" class="btn btn-outline" style="width:100%;justify-content:center;">Get started &rarr;</a>
         </div>
 
-        <!-- Accelerate -->
-        <div class="price-card featured">
-          <span class="price-badge">Best value</span>
-          <div class="price-plan">Accelerate</div>
-          <div>
-            <span class="price-main-val">$199<span class="price-period">&thinsp;/mo</span></span>
+        <!-- Growth — featured -->
+        <div class="price-card featured" style="position:relative;">
+          <div class="price-badge">Most popular</div>
+          <p class="price-plan">Growth</p>
+          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:6px;">
+            <span class="price-main-val">$499</span>
           </div>
-          <div class="price-period" style="margin-bottom:6px;">platform fee</div>
-          <div class="price-metered">+ $1.00 per answer</div>
-          <hr class="price-divider">
+          <p class="price-period">platform fee</p>
+          <p class="price-metered">750 answers included &middot; $1.50 per answer after</p>
+          <hr class="price-divider"/>
           <ul class="price-features">
-            <li>Everything in Resolve</li>
+            <li>Everything in Starter</li>
             <li>All knowledge sources (Confluence, Notion, GitHub, URL, Zendesk, Jira)</li>
-            <li>Unlimited answers</li>
             <li>Priority ingestion (re-indexed every hour)</li>
-            <li>Dedicated onboarding</li>
-            <li>SLA support</li>
+            <li>Dedicated onboarding call</li>
           </ul>
-          <a class="btn btn-primary" href="https://api.devresolve.ai/onboard/plan" style="text-align:center;">
-            Get started with Accelerate
-          </a>
+          <a href="https://api.devresolve.ai/onboard/plan" class="btn btn-primary" style="width:100%;justify-content:center;">Get started &rarr;</a>
+        </div>
+
+        <!-- Scale -->
+        <div class="price-card">
+          <p class="price-plan">Scale</p>
+          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:6px;">
+            <span class="price-main-val">$999</span>
+          </div>
+          <p class="price-period">platform fee</p>
+          <p class="price-metered">2,000 answers included &middot; $1.00 per answer after</p>
+          <hr class="price-divider"/>
+          <ul class="price-features">
+            <li>Everything in Growth</li>
+            <li>Unlimited knowledge sources</li>
+            <li>SLA support</li>
+            <li>Custom integrations</li>
+            <li>Usage dashboard + analytics</li>
+          </ul>
+          <a href="https://api.devresolve.ai/onboard/plan" class="btn btn-outline" style="width:100%;justify-content:center;">Get started &rarr;</a>
         </div>
 
         <!-- Sovereign -->
@@ -773,18 +785,16 @@
           <div style="margin-bottom:6px;">
             <span class="price-main-val">Custom</span>
           </div>
-          <p class="price-period">Volume pricing &middot; annual contract</p>
-          <p class="price-metered" style="color:#fbbf24;">Bring your own infrastructure</p>
+          <p class="price-period">annual contract</p>
+          <p class="price-metered" style="color:#fbbf24;">From $2,500 &middot; bring your own infrastructure</p>
           <hr class="price-divider"/>
           <ul class="price-features">
-            <li>Everything in Accelerate</li>
+            <li>Everything in Scale</li>
             <li>Self-hosted in your VPC or on-premise</li>
             <li>Bring your own LLM API keys (BYOK)</li>
             <li>Zero data leaves your environment</li>
-            <li>SSO / SAML authentication</li>
-            <li>Custom SLA &amp; dedicated support</li>
+            <li>SSO / SAML</li>
             <li>Procurement &amp; security review support</li>
-            <li>Custom contract &amp; invoicing</li>
           </ul>
           <a href="mailto:devresolve.ai@outlook.com?subject=Sovereign%20Plan%20Enquiry" class="btn btn-outline" style="width:100%;justify-content:center;border-color:rgba(250,204,21,0.4);color:#fbbf24;">Talk to us &rarr;</a>
         </div>
@@ -938,7 +948,7 @@
       document.getElementById('val-pct').textContent=+slP.value;
       document.getElementById('val-cost').textContent=c;
       var def=Math.round(t*p),sav=def*c;
-      var fee=t<500?79:199,per=t<500?1.50:1.00,dr=Math.round(fee+def*per);
+      var fee=t<300?249:t<1000?499:999,inc=t<300?200:t<1000?750:2000,per=t<300?2.00:t<1000?1.50:1.00,bill=Math.max(0,def-inc),dr=Math.round(fee+bill*per);
       var roi=sav>0?Math.round(sav/dr):0;
       document.getElementById('res-deflected').textContent=def.toLocaleString();
       document.getElementById('res-saved').textContent=fmt(sav);
