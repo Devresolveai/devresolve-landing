@@ -386,6 +386,26 @@
         font-weight: 700; flex-shrink: 0; margin-top: 1px;
       }
 
+      /* ── ROI Calculator ──────────────────────────────────────────────────────── */
+      .calc-wrap { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
+      @media (max-width:768px) { .calc-wrap { grid-template-columns:1fr; } }
+      .calc-inputs { display:flex; flex-direction:column; gap:28px; }
+      .calc-row { display:flex; flex-direction:column; gap:10px; }
+      .calc-label-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+      .calc-label { color:var(--text); font-size:0.9rem; font-weight:500; }
+      .calc-val { color:var(--indigo-l); font-weight:700; font-size:1rem; min-width:48px; text-align:right; }
+      .calc-slider { -webkit-appearance:none; appearance:none; width:100%; height:5px; background:rgba(99,102,241,0.2); border-radius:4px; outline:none; cursor:pointer; }
+      .calc-slider::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:18px; height:18px; background:var(--indigo); border-radius:50%; cursor:pointer; box-shadow:0 0 0 3px rgba(99,102,241,0.2); }
+      .calc-slider::-moz-range-thumb { width:18px; height:18px; background:var(--indigo); border-radius:50%; cursor:pointer; border:none; }
+      .calc-range-labels { display:flex; justify-content:space-between; color:var(--subtle); font-size:0.72rem; }
+      .calc-results { display:flex; flex-direction:column; gap:16px; }
+      .calc-result-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:24px 28px; }
+      .calc-result-card.highlight { border-color:rgba(16,185,129,0.35); background:linear-gradient(135deg,var(--bg-card) 0%,#0a1a12 100%); }
+      .calc-result-label { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--subtle); font-weight:600; margin-bottom:8px; }
+      .calc-result-val { font-size:2.2rem; font-weight:700; color:#fff; line-height:1.1; }
+      .calc-result-val.green { color:var(--green); }
+      .calc-result-sub { color:var(--muted); font-size:0.8rem; margin-top:6px; }
+
       /* ── Social proof ────────────────────────────────────────────────── */
       .social-grid {
         display: grid;
@@ -454,7 +474,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#sources">Sources</a>
         <a href="#gaps">Gap Report</a>
-        <a href="#demo">Demo</a><a href="#pricing">Pricing</a>
+        <a href="#calculator">Calculator</a><a href="#demo">Demo</a><a href="#pricing">Pricing</a>
         <a href="mailto:devresolve.ai@outlook.com">Contact</a>
         <a class="btn btn-primary" href="https://api.devresolve.ai/onboard/plan" style="padding:8px 18px;font-size:0.85rem;">Get started</a>
       </div>
@@ -777,6 +797,70 @@
 
     <hr class="full-divider">
 
+    <!-- ── ROI Calculator ──────────────────────────────────────────────────── -->
+    <section id="calculator">
+      <div class="section-label">ROI Calculator</div>
+      <h2>See what DevResolve saves you.</h2>
+      <p class="section-sub">
+        Drag the sliders to match your team. See your estimated savings before you spend a penny.
+      </p>
+
+      <div class="calc-wrap">
+
+        <div class="calc-inputs">
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <label class="calc-label">Technical support tickets per month</label>
+              <span class="calc-val" id="val-tickets">500</span>
+            </div>
+            <input type="range" class="calc-slider" id="sl-tickets" min="50" max="5000" step="50" value="500">
+            <div class="calc-range-labels"><span>50</span><span>5,000+</span></div>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <label class="calc-label">% answerable from your documentation</label>
+              <span class="calc-val" id="val-pct">60</span>%
+            </div>
+            <input type="range" class="calc-slider" id="sl-pct" min="10" max="90" step="5" value="60">
+            <div class="calc-range-labels"><span>10%</span><span>90%</span></div>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <label class="calc-label">Average cost per ticket (engineer time + context switch)</label>
+              <span>$<span class="calc-val" id="val-cost">45</span></span>
+            </div>
+            <input type="range" class="calc-slider" id="sl-cost" min="15" max="200" step="5" value="45">
+            <div class="calc-range-labels"><span>$15</span><span>$200</span></div>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="calc-result-card">
+            <div class="calc-result-label">Tickets deflected / mo</div>
+            <div class="calc-result-val" id="res-deflected">300</div>
+          </div>
+          <div class="calc-result-card highlight">
+            <div class="calc-result-label">Engineer time saved / mo</div>
+            <div class="calc-result-val" id="res-saved">$13,500</div>
+            <div class="calc-result-sub">vs DevResolve cost of ~$<span id="res-cost">529</span></div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-label">ROI</div>
+            <div class="calc-result-val green" id="res-roi">26&times;</div>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="text-align:center;margin-top:36px;">
+        <a class="btn btn-primary" href="https://api.devresolve.ai/onboard/plan" style="font-size:1rem;padding:14px 32px;">Start saving &rarr;</a>
+      </p>
+    </section>
+
+    <hr class="full-divider">
+
     <!-- ── Social proof ───────────────────────────────────────────────────── -->
     <section id="social">
       <div class="section-label">Early access</div>
@@ -842,7 +926,31 @@
         });
       }
     </script>
-    <!-- DevResolve live demo widget -->
+    <!-- ROI Calculator logic -->
+  <script>
+  (function(){
+    var slT=document.getElementById('sl-tickets'),slP=document.getElementById('sl-pct'),slC=document.getElementById('sl-cost');
+    if(!slT)return;
+    function fmt(n){return n>=1000?'$'+(n/1000).toFixed(n%1000===0?0:1)+'k':'$'+n.toLocaleString();}
+    function upd(){
+      var t=+slT.value,p=+slP.value/100,c=+slC.value;
+      document.getElementById('val-tickets').textContent=t.toLocaleString();
+      document.getElementById('val-pct').textContent=+slP.value;
+      document.getElementById('val-cost').textContent=c;
+      var def=Math.round(t*p),sav=def*c;
+      var fee=t<500?79:199,per=t<500?1.50:1.00,dr=Math.round(fee+def*per);
+      var roi=sav>0?Math.round(sav/dr):0;
+      document.getElementById('res-deflected').textContent=def.toLocaleString();
+      document.getElementById('res-saved').textContent=fmt(sav);
+      document.getElementById('res-cost').textContent=dr.toLocaleString();
+      document.getElementById('res-roi').textContent=roi+'×';
+    }
+    slT.addEventListener('input',upd);slP.addEventListener('input',upd);slC.addEventListener('input',upd);
+    upd();
+  })();
+  </script>
+
+<!-- DevResolve live demo widget -->
     <script src="https://api.devresolve.ai/widget.js"
             data-org-id="00000000-0000-0000-0000-000000000001"></script>
   </body>
