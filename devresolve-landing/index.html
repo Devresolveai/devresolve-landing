@@ -459,6 +459,68 @@
 
       /* ── Divider ─────────────────────────────────────────────────────── */
       .full-divider { border: none; border-top: 1px solid var(--border); }
+
+      /* ── Mobile responsive ───────────────────────────────────────────── */
+
+      /* 1. Nav — hide all links except CTA button */
+      @media (max-width: 768px) {
+        nav { padding: 0 20px; }
+        .nav-links a:not(.btn) { display: none; }
+        .nav-links { gap: 0; }
+      }
+
+      /* 2. Hero — fix large h1 and overflowing embed-block */
+      @media (max-width: 768px) {
+        .hero { padding: 60px 20px 48px; }
+        .hero-cta { flex-direction: column; align-items: center; }
+        .hero-cta .btn { width: 100%; max-width: 320px; text-align: center; justify-content: center; }
+        .embed-block { padding: 20px; }
+        .embed-code { font-size: 0.72rem; }
+      }
+
+      /* 3. How it works steps — single column */
+      @media (max-width: 768px) {
+        .steps { grid-template-columns: 1fr; }
+      }
+
+      /* 4. Before/After callout — single column */
+      @media (max-width: 640px) {
+        div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      }
+
+      /* 5. Sources grid — 2 columns instead of 4 */
+      @media (max-width: 640px) {
+        .sources-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      /* 7. Pricing grid — single column stack */
+      @media (max-width: 640px) {
+        .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+        .price-card.featured { order: -1; }
+      }
+
+      /* 9. Social proof grid — single column */
+      @media (max-width: 640px) {
+        .social-grid { grid-template-columns: 1fr; }
+      }
+
+      /* 10. Footer — stack vertically */
+      @media (max-width: 640px) {
+        footer { flex-direction: column; align-items: flex-start; gap: 20px; padding: 32px 20px; }
+        .footer-links { flex-wrap: wrap; gap: 16px; }
+      }
+
+      /* 11. Section padding — reduce on mobile */
+      @media (max-width: 768px) {
+        section { padding: 64px 20px; }
+        h2 { font-size: 1.6rem; }
+        .section-sub { font-size: 0.9rem; margin-bottom: 36px; }
+      }
+
+      /* 12. Demo section inline padding — fix on mobile */
+      @media (max-width: 640px) {
+        #demo > div { padding: 28px 24px !important; width: 90% !important; }
+      }
     </style>
   </head>
 
