@@ -1,1029 +1,707 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="DevResolve answers developer questions from your own docs. Embedded on your docs site. Escalates when it can't.">
-    <meta name="keywords" content="DevResolve, developer support, docs chat widget, knowledge base, Confluence, Notion, Jira, Zendesk, technical support">
-    <meta name="author" content="DevResolve, LLC">
-    <meta name="copyright" content="&copy; 2026 DevResolve, LLC All rights reserved.">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="DevResolve">
-    <meta property="og:title" content="DevResolve — Answer developer questions from your own docs">
-    <meta property="og:description" content="Embed a chat widget on your docs site. DevResolve answers from your knowledge base and auto-creates a support ticket when it can't.">
-    <meta property="og:url" content="https://devresolve.ai">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@devresolveai">
-    <meta name="twitter:title" content="DevResolve — Answer developer questions from your own docs">
-    <meta name="twitter:description" content="Embed a chat widget on your docs site. DevResolve answers from your knowledge base and auto-creates a support ticket when it can't.">
-    <title>DevResolve — Answer developer questions from your own docs</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-      :root {
-        --bg:      #0a0a0f;
-        --bg-card: #0f0f1a;
-        --bg-card2:#12122a;
-        --border:  rgba(99,102,241,0.18);
-        --indigo:  #6366f1;
-        --indigo-l:#818cf8;
-        --green:   #10b981;
-        --text:    #e2e8f0;
-        --muted:   #94a3b8;
-        --subtle:  #64748b;
-        --code-bg: #0d0d1c;
-      }
-
-      html { scroll-behavior: smooth; }
-
-      body {
-        font-family: 'Space Grotesk', sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.65;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      a { color: var(--indigo); text-decoration: none; }
-      a:hover { text-decoration: underline; }
-
-      /* ── Nav ─────────────────────────────────────────────────────────── */
-      nav {
-        position: sticky; top: 0; z-index: 100;
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 32px; height: 64px;
-        background: rgba(10,10,15,0.88);
-        border-bottom: 1px solid var(--border);
-        backdrop-filter: blur(12px);
-      }
-
-      .nav-logo {
-        display: flex; align-items: center; gap: 10px;
-        font-weight: 700; font-size: 1.05rem; color: var(--text);
-        text-decoration: none;
-      }
-
-      .nav-logo .logo-mark {
-        width: 32px; height: 32px;
-        background: var(--indigo); border-radius: 8px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 16px;
-      }
-
-      .nav-links { display: flex; align-items: center; gap: 28px; }
-
-      .nav-links a {
-        color: var(--muted); font-size: 0.9rem; font-weight: 500;
-        transition: color 0.15s;
-      }
-
-      .nav-links a:hover { color: var(--text); text-decoration: none; }
-
-      .btn {
-        display: inline-flex; align-items: center; justify-content: center;
-        padding: 10px 22px; border-radius: 9px;
-        font-family: inherit; font-size: 0.9rem; font-weight: 600;
-        cursor: pointer; border: none; transition: opacity 0.15s, transform 0.1s;
-        text-decoration: none;
-      }
-      .btn:active { transform: scale(0.97); text-decoration: none; }
-      .btn-primary { background: var(--indigo); color: #fff; }
-      .btn-primary:hover { opacity: 0.88; text-decoration: none; }
-      .btn-outline {
-        background: transparent;
-        border: 1.5px solid rgba(99,102,241,0.45);
-        color: var(--indigo-l);
-      }
-      .btn-outline:hover { border-color: var(--indigo); background: rgba(99,102,241,0.07); text-decoration: none; }
-
-      /* ── Sections ────────────────────────────────────────────────────── */
-      section { padding: 96px 24px; max-width: 1100px; margin: 0 auto; }
-
-      .section-label {
-        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-        text-transform: uppercase; color: var(--indigo);
-        margin-bottom: 14px;
-      }
-
-      h2 {
-        font-size: clamp(1.8rem, 4vw, 2.4rem);
-        font-weight: 700; color: #fff;
-        line-height: 1.22; margin-bottom: 16px;
-      }
-
-      .section-sub {
-        color: var(--muted); font-size: 1.05rem;
-        max-width: 560px; margin-bottom: 56px; line-height: 1.7;
-      }
-
-      /* ── Hero ────────────────────────────────────────────────────────── */
-      .hero {
-        text-align: center;
-        padding: 100px 24px 80px;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-
-      .hero-badge {
-        display: inline-flex; align-items: center; gap: 8px;
-        background: rgba(99,102,241,0.1);
-        border: 1px solid rgba(99,102,241,0.25);
-        border-radius: 20px;
-        padding: 6px 16px;
-        font-size: 0.82rem; font-weight: 600; color: var(--indigo-l);
-        margin-bottom: 32px;
-      }
-
-      .hero-badge .dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; }
-
-      h1 {
-        font-size: clamp(2.4rem, 6vw, 3.8rem);
-        font-weight: 700; color: #fff;
-        line-height: 1.12; margin-bottom: 22px;
-        letter-spacing: -0.02em;
-      }
-
-      h1 .accent { color: var(--indigo-l); }
-
-      .hero-sub {
-        font-size: clamp(1rem, 2vw, 1.2rem);
-        color: var(--muted); max-width: 600px;
-        margin: 0 auto 44px; line-height: 1.7;
-      }
-
-      .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
-
-      /* ── Embed snippet ───────────────────────────────────────────────── */
-      .embed-block {
-        background: var(--code-bg);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 28px 32px;
-        max-width: 680px;
-        margin: 0 auto;
-        text-align: left;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .embed-block::before {
-        content: '';
-        position: absolute; inset: 0;
-        background: linear-gradient(135deg, rgba(99,102,241,0.04) 0%, transparent 60%);
-        pointer-events: none;
-      }
-
-      .embed-block-label {
-        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-        text-transform: uppercase; color: var(--subtle);
-        margin-bottom: 14px;
-      }
-
-      .embed-code {
-        font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
-        font-size: 0.82rem; line-height: 1.7; color: #c4b5fd;
-        white-space: pre-wrap; word-break: break-word;
-      }
-
-      .embed-code .attr { color: #86efac; }
-      .embed-code .val  { color: #fcd34d; }
-      .embed-code .tag  { color: #a5b4fc; }
-
-      .copy-btn {
-        position: absolute; top: 16px; right: 16px;
-        background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);
-        border-radius: 6px; padding: 5px 12px;
-        color: var(--indigo-l); font-size: 0.75rem; font-weight: 600;
-        cursor: pointer; font-family: inherit;
-        transition: background 0.15s;
-      }
-      .copy-btn:hover { background: rgba(99,102,241,0.28); }
-
-      /* ── How it works ────────────────────────────────────────────────── */
-      .steps {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px;
-      }
-
-      .step-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 32px 28px;
-        position: relative;
-        overflow: hidden;
-        transition: border-color 0.2s;
-      }
-
-      .step-card:hover { border-color: rgba(99,102,241,0.38); }
-
-      .step-num {
-        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-        text-transform: uppercase; color: var(--indigo);
-        margin-bottom: 14px;
-      }
-
-      .step-card h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-
-      .step-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
-
-      .step-icon {
-        width: 42px; height: 42px;
-        background: rgba(99,102,241,0.12);
-        border-radius: 10px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 20px; margin-bottom: 18px;
-      }
-
-      /* ── Sources ─────────────────────────────────────────────────────── */
-      .sources-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-      }
-
-      .source-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 24px 22px;
-        display: flex; align-items: center; gap: 14px;
-        transition: border-color 0.2s, background 0.2s;
-      }
-
-      .source-card:hover {
-        border-color: rgba(99,102,241,0.38);
-        background: var(--bg-card2);
-      }
-
-      .source-icon {
-        width: 40px; height: 40px; border-radius: 9px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 20px; flex-shrink: 0;
-        background: rgba(99,102,241,0.1);
-      }
-
-      .source-name { font-weight: 600; color: var(--text); font-size: 0.95rem; }
-      .source-type { color: var(--subtle); font-size: 0.78rem; margin-top: 2px; }
-
-      /* ── Docs Gap Report ─────────────────────────────────────────────── */
-      .gap-showcase {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 40px 44px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 48px;
-        align-items: center;
-      }
-
-      @media (max-width: 720px) {
-        .gap-showcase { grid-template-columns: 1fr; padding: 32px 24px; gap: 32px; }
-      }
-
-      .gap-showcase h3 {
-        font-size: 1.45rem; font-weight: 700; color: #fff;
-        margin-bottom: 14px;
-      }
-
-      .gap-showcase p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
-
-      .gap-list {
-        background: var(--code-bg);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-      }
-
-      .gap-list-header {
-        padding: 12px 18px;
-        border-bottom: 1px solid var(--border);
-        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
-        text-transform: uppercase; color: var(--subtle);
-        display: flex; justify-content: space-between;
-      }
-
-      .gap-item {
-        padding: 12px 18px;
-        border-bottom: 1px solid rgba(99,102,241,0.08);
-        display: flex; justify-content: space-between; align-items: flex-start;
-        gap: 12px;
-      }
-
-      .gap-item:last-child { border-bottom: none; }
-
-      .gap-question { font-size: 0.82rem; color: var(--text); line-height: 1.5; flex: 1; }
-
-      .gap-score {
-        font-size: 0.72rem; font-weight: 700;
-        color: #f87171; background: rgba(248,113,113,0.1);
-        border-radius: 5px; padding: 2px 8px; white-space: nowrap;
-      }
-
-      /* ── Pricing ─────────────────────────────────────────────────────── */
-      .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 24px;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-
-      .price-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 36px 32px;
-        display: flex; flex-direction: column;
-        position: relative;
-        transition: border-color 0.2s;
-      }
-
-      .price-card:hover { border-color: rgba(99,102,241,0.38); }
-
-      .price-card.featured {
-        border-color: var(--indigo);
-        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card2) 100%);
-        box-shadow: 0 0 48px rgba(99,102,241,0.12);
-      }
-
-      .price-badge {
-        position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-        background: var(--indigo); color: #fff;
-        font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
-        padding: 4px 14px; border-radius: 20px; text-transform: uppercase;
-        white-space: nowrap;
-      }
-
-      .price-plan { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
-
-      .price-main-val { font-size: 2.4rem; font-weight: 700; color: #fff; }
-
-      .price-period { font-size: 0.9rem; color: var(--muted); }
-
-      .price-metered { font-size: 0.9rem; color: var(--indigo-l); font-weight: 600; margin: 6px 0 26px; }
-
-      .price-divider { border: none; border-top: 1px solid rgba(99,102,241,0.12); margin: 0 0 20px; }
-
-      .price-features { list-style: none; flex: 1; margin-bottom: 28px; }
-
-      .price-features li {
-        color: #cbd5e1; font-size: 0.88rem;
-        padding: 5px 0;
-        display: flex; align-items: flex-start; gap: 10px;
-      }
-
-      .price-features li::before {
-        content: '✓'; color: var(--green);
-        font-weight: 700; flex-shrink: 0; margin-top: 1px;
-      }
-
-      /* ── ROI Calculator ──────────────────────────────────────────────────────── */
-      .calc-wrap { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
-      @media (max-width:768px) { .calc-wrap { grid-template-columns:1fr; } }
-      .calc-inputs { display:flex; flex-direction:column; gap:28px; }
-      .calc-row { display:flex; flex-direction:column; gap:10px; }
-      .calc-label-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
-      .calc-label { color:var(--text); font-size:0.9rem; font-weight:500; }
-      .calc-val { color:var(--indigo-l); font-weight:700; font-size:1rem; min-width:48px; text-align:right; }
-      .calc-slider { -webkit-appearance:none; appearance:none; width:100%; height:5px; background:rgba(99,102,241,0.2); border-radius:4px; outline:none; cursor:pointer; }
-      .calc-slider::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:18px; height:18px; background:var(--indigo); border-radius:50%; cursor:pointer; box-shadow:0 0 0 3px rgba(99,102,241,0.2); }
-      .calc-slider::-moz-range-thumb { width:18px; height:18px; background:var(--indigo); border-radius:50%; cursor:pointer; border:none; }
-      .calc-range-labels { display:flex; justify-content:space-between; color:var(--subtle); font-size:0.72rem; }
-      .calc-results { display:flex; flex-direction:column; gap:16px; }
-      .calc-result-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:24px 28px; }
-      .calc-result-card.highlight { border-color:rgba(16,185,129,0.35); background:linear-gradient(135deg,var(--bg-card) 0%,#0a1a12 100%); }
-      .calc-result-label { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--subtle); font-weight:600; margin-bottom:8px; }
-      .calc-result-val { font-size:2.2rem; font-weight:700; color:#fff; line-height:1.1; }
-      .calc-result-val.green { color:var(--green); }
-      .calc-result-sub { color:var(--muted); font-size:0.8rem; margin-top:6px; }
-
-      /* ── Social proof ────────────────────────────────────────────────── */
-      .social-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-      }
-
-      .social-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 28px;
-        min-height: 140px;
-        display: flex; align-items: center; justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .social-placeholder {
-        color: var(--subtle); font-size: 0.82rem;
-        text-align: center; line-height: 1.6;
-      }
-
-      /* ── Footer ──────────────────────────────────────────────────────── */
-      footer {
-        border-top: 1px solid var(--border);
-        padding: 40px 32px;
-        display: flex; align-items: center; justify-content: space-between;
-        flex-wrap: wrap; gap: 16px;
-        max-width: 1100px; margin: 0 auto;
-      }
-
-      .footer-brand {
-        display: flex; align-items: center; gap: 10px;
-        font-weight: 700; color: var(--text);
-      }
-
-      .footer-brand .logo-mark {
-        width: 28px; height: 28px; background: var(--indigo);
-        border-radius: 7px; display: flex; align-items: center;
-        justify-content: center; font-size: 14px;
-      }
-
-      .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
-
-      .footer-links a { color: var(--subtle); font-size: 0.85rem; transition: color 0.15s; }
-
-      .footer-links a:hover { color: var(--text); text-decoration: none; }
-
-      .footer-copy { color: var(--subtle); font-size: 0.8rem; width: 100%; text-align: center; padding-top: 16px; }
-
-      /* ── Divider ─────────────────────────────────────────────────────── */
-      .full-divider { border: none; border-top: 1px solid var(--border); }
-
-      /* ── Mobile responsive ───────────────────────────────────────────── */
-
-      /* 1. Nav — hide all links except CTA button */
-      @media (max-width: 768px) {
-        nav { padding: 0 20px; }
-        .nav-links a:not(.btn) { display: none; }
-        .nav-links { gap: 0; }
-      }
-
-      /* 2. Hero — fix large h1 and overflowing embed-block */
-      @media (max-width: 768px) {
-        .hero { padding: 60px 20px 48px; }
-        .hero-cta { flex-direction: column; align-items: center; }
-        .hero-cta .btn { width: 100%; max-width: 320px; text-align: center; justify-content: center; }
-        .embed-block { padding: 20px; }
-        .embed-code { font-size: 0.72rem; }
-      }
-
-      /* 3. How it works steps — single column */
-      @media (max-width: 768px) {
-        .steps { grid-template-columns: 1fr; }
-      }
-
-      /* 4. Before/After callout — single column */
-      @media (max-width: 640px) {
-        div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
-      }
-
-      /* 5. Sources grid — 2 columns instead of 4 */
-      @media (max-width: 640px) {
-        .sources-grid { grid-template-columns: repeat(2, 1fr); }
-      }
-
-      /* 7. Pricing grid — single column stack */
-      @media (max-width: 640px) {
-        .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-        .price-card.featured { order: -1; }
-      }
-
-      /* 9. Social proof grid — single column */
-      @media (max-width: 640px) {
-        .social-grid { grid-template-columns: 1fr; }
-      }
-
-      /* 10. Footer — stack vertically */
-      @media (max-width: 640px) {
-        footer { flex-direction: column; align-items: flex-start; gap: 20px; padding: 32px 20px; }
-        .footer-links { flex-wrap: wrap; gap: 16px; }
-      }
-
-      /* 11. Section padding — reduce on mobile */
-      @media (max-width: 768px) {
-        section { padding: 64px 20px; }
-        h2 { font-size: 1.6rem; }
-        .section-sub { font-size: 0.9rem; margin-bottom: 36px; }
-      }
-
-      /* 12. Demo section inline padding — fix on mobile */
-      @media (max-width: 640px) {
-        #demo > div { padding: 28px 24px !important; width: 90% !important; }
-      }
-    </style>
-  </head>
-
-  <body>
-
-    <!-- ── Nav ───────────────────────────────────────────────────────────── -->
-    <nav>
-      <a class="nav-logo" href="/">
-        <span class="logo-mark">&#9889;</span>
-        DevResolve
-      </a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Company Brain is the knowledge layer for AI agents. Connect your docs, wikis, and tools. Query everything through one API.">
+  <meta property="og:title" content="Company Brain — Knowledge infrastructure for AI-first companies">
+  <meta property="og:description" content="One brain for your whole company. Any agent can query it.">
+  <meta property="og:url" content="https://devresolve.ai">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Company Brain — Knowledge infrastructure for AI-first companies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08080c;
+      --surface: #0e0e14;
+      --surface2: #13131d;
+      --border: rgba(255,255,255,0.06);
+      --border-h: rgba(255,255,255,0.1);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,0.12);
+      --green: #34d399;
+      --green-dim: rgba(52,211,153,0.1);
+      --blue: #60a5fa;
+      --red: #ef4444;
+      --text: #b0b0b8;
+      --text-dim: #666;
+      --white: #f0f0f2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--purple); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,8,12,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 0.95rem; color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo:hover { text-decoration: none; }
+
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+
+    .nav-links a {
+      color: var(--text-dim); font-size: 0.85rem; font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--white); text-decoration: none; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 9px 20px; border-radius: 8px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .btn:hover { text-decoration: none; }
+    .btn-primary { background: var(--purple); color: #fff; }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-outline { background: transparent; border: 1.5px solid rgba(167,139,250,0.35); color: var(--purple); }
+    .btn-outline:hover { border-color: var(--purple); background: var(--purple-dim); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--border-h); color: var(--white); }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      padding: 100px 24px 80px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--purple-dim);
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 0.78rem; font-weight: 600; color: var(--purple);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span { color: var(--purple); }
+
+    .hero-sub-headline {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text);
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+
+    /* code block */
+    .code-block {
+      background: #0c0c14;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      text-align: left;
+      max-width: 640px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+
+    .code-block-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .code-block pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: #c4b5fd;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .code-block .cm { color: #555; }
+    .code-block .str { color: #86efac; }
+    .code-block .key { color: #c4b5fd; }
+    .code-block .num { color: #fbbf24; }
+    .code-block .kw { color: #60a5fa; }
+
+    /* sections */
+    section { padding: 88px 24px; max-width: 1080px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    section h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.2; margin-bottom: 14px;
+    }
+
+    .section-sub {
+      color: var(--text); font-size: 1rem;
+      max-width: 520px; margin-bottom: 48px; line-height: 1.7;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* problem stats */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .problem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .problem-num {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .problem-card p { font-size: 0.92rem; line-height: 1.6; }
+
+    .highlight-bar {
+      background: linear-gradient(90deg, rgba(167,139,250,0.06), transparent);
+      border-left: 3px solid var(--purple);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .highlight-bar p { color: var(--white); font-weight: 500; font-size: 1rem; }
+
+    /* cards grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: var(--border-h); }
+
+    .card h3 {
+      font-size: 1rem; font-weight: 600; color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .card-num {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--purple);
+      margin-bottom: 10px;
+    }
+
+    .card p { font-size: 0.9rem; line-height: 1.6; }
+
+    /* sources */
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .source-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex; align-items: center; gap: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .source-card:hover { border-color: var(--border-h); }
+
+    .source-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+      background: var(--purple-dim);
+    }
+
+    .source-name { font-weight: 600; color: var(--white); font-size: 0.9rem; }
+    .source-type { color: var(--text-dim); font-size: 0.75rem; margin-top: 1px; }
+
+    /* api section */
+    .api-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .api-endpoints { display: flex; flex-direction: column; gap: 12px; }
+
+    .endpoint {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .method {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; font-weight: 600;
+      padding: 2px 7px; border-radius: 4px;
+      margin-right: 8px;
+    }
+
+    .method-post { background: rgba(96,165,250,0.15); color: var(--blue); }
+    .method-get { background: rgba(52,211,153,0.12); color: var(--green); }
+    .method-del { background: rgba(239,68,68,0.12); color: var(--red); }
+
+    .endpoint-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem; color: var(--white);
+    }
+
+    .endpoint-desc { font-size: 0.82rem; color: var(--text-dim); margin-top: 6px; }
+
+    /* pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      display: flex; flex-direction: column;
+    }
+
+    .price-card.pop {
+      border-color: rgba(167,139,250,0.3);
+      background: linear-gradient(180deg, rgba(167,139,250,0.05), var(--surface));
+    }
+
+    .plan-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--text-dim); margin-bottom: 8px;
+    }
+
+    .price-card.pop .plan-label { color: var(--purple); }
+
+    .plan-price {
+      font-size: 2.4rem; font-weight: 800; color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .plan-period { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 16px; }
+
+    .plan-features {
+      list-style: none; flex: 1;
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .plan-features li {
+      font-size: 0.85rem; color: var(--text);
+      padding-left: 18px; position: relative;
+    }
+
+    .plan-features li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 24px;
+      max-width: 1080px; margin: 0 auto;
+    }
+
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+
+    .footer-brand {
+      font-weight: 600; color: var(--text); font-size: 0.85rem;
+    }
+
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-dim); font-size: 0.82rem; }
+    .footer-links a:hover { color: var(--white); text-decoration: none; }
+
+    .footer-copy {
+      width: 100%; text-align: center;
+      color: var(--text-dim); font-size: 0.75rem;
+      padding-top: 20px;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      .nav-links a:not(.btn) { display: none; }
+      .hero { padding: 64px 20px 56px; }
+      .hero-cta { flex-direction: column; align-items: center; }
+      .hero-cta .btn { width: 100%; max-width: 300px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr; }
+      .sources-grid { grid-template-columns: repeat(2, 1fr); }
+      .api-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+      section { padding: 56px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .sources-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">🧠 Company Brain</a>
       <div class="nav-links">
         <a href="#how-it-works">How it works</a>
-        <a href="#sources">Sources</a>
-        <a href="#gaps">Gap Report</a>
-        <a href="#calculator">Calculator</a><a href="#demo">Demo</a><a href="#pricing">Pricing</a>
-        <a href="mailto:devresolve.ai@outlook.com">Contact</a>
-        <a class="btn btn-primary" href="https://api.devresolve.ai/onboard/plan" style="padding:8px 18px;font-size:0.85rem;">Get started</a>
-      </div>
-    </nav>
-
-    <!-- ── Hero ──────────────────────────────────────────────────────────── -->
-    <div class="hero">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        AI support for technical questions
-      </div>
-
-      <h1>
-        Answer every technical question<br>before it becomes <span class="accent">a support ticket</span>.
-      </h1>
-
-      <p class="hero-sub">
-        Embed DevResolve on your docs site or product portal. It answers technical questions
-        from your knowledge base instantly — so your engineering team stops getting
-        interrupted. When it can't answer, it opens a ticket automatically with the full context.
-      </p>
-
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="https://api.devresolve.ai/onboard/plan">Start for free &rarr;</a>
-        <a class="btn btn-outline" href="mailto:devresolve.ai@outlook.com">Talk to us</a>
-      </div>
-
-      <!-- Embed snippet -->
-      <div class="embed-block">
-        <div class="embed-block-label">Embed on your docs site — one line</div>
-        <button class="copy-btn" onclick="copyEmbed(this)">Copy</button>
-        <div class="embed-code"><span class="tag">&lt;script</span>
-  <span class="attr">src</span>=<span class="val">"https://api.devresolve.ai/widget.js"</span>
-  <span class="attr">data-org-id</span>=<span class="val">"YOUR-ORG-UUID"</span><span class="tag">&gt;&lt;/script&gt;</span></div>
-      </div>
-    </div>
-
-    <hr class="full-divider">
-
-    <!-- ── How it works ──────────────────────────────────────────────────── -->
-    <section id="how-it-works">
-      <div class="section-label">How it works</div>
-      <h2>Answer first. Ticket only if needed.</h2>
-      <p class="section-sub">
-        One script tag. Technical questions get answered from your real documentation instantly.
-        A ticket only appears when the bot genuinely can't resolve it.
-      </p>
-
-      <div class="steps">
-        <div class="step-card">
-          <div class="step-icon">&#128172;</div>
-          <div class="step-num">Step 01</div>
-          <h3>Question asked, not a ticket opened</h3>
-          <p>
-            Someone has a technical question about your product. Instead of opening a
-            support ticket, they ask the chat widget. Your engineering team never sees it
-            unless the bot genuinely can't resolve it.
-          </p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-icon">&#128218;</div>
-          <div class="step-num">Step 02</div>
-          <h3>Instant answer from real docs</h3>
-          <p>
-            DevResolve searches your connected knowledge bases — Confluence, Notion,
-            GitHub, your docs site — and synthesises a precise answer in seconds.
-            Most questions resolve here. No engineer interrupted.
-          </p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-icon">&#127915;</div>
-          <div class="step-num">Step 03</div>
-          <h3>Auto-ticket on escalation</h3>
-          <p>
-            When the bot can't answer, it automatically creates a ticket in Zendesk,
-            Jira, or Linear with the full conversation transcript — and notifies your
-            team via email or Teams. No question goes unanswered.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <div style="max-width:1100px;margin:0 auto 0;padding:0 24px 64px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-      <div style="background:#0f1a12;border:1px solid rgba(16,185,129,0.2);border-radius:14px;padding:28px 32px;">
-        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#10b981;font-weight:700;margin-bottom:14px;">With DevResolve</p>
-        <ul style="list-style:none;color:#86efac;font-size:0.9rem;line-height:1.8;">
-          <li>✓ Question asked in the widget</li>
-          <li>✓ Answer from docs in seconds</li>
-          <li>✓ Ticket only if bot can't resolve</li>
-          <li>✓ Engineering team not interrupted</li>
-          <li>✓ Docs gap logged automatically</li>
-        </ul>
-      </div>
-      <div style="background:#1a0f0f;border:1px solid rgba(248,113,113,0.15);border-radius:14px;padding:28px 32px;">
-        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#f87171;font-weight:700;margin-bottom:14px;">Without DevResolve</p>
-        <ul style="list-style:none;color:#fca5a5;font-size:0.9rem;line-height:1.8;">
-          <li>✗ Support ticket opened immediately</li>
-          <li>✗ Ticket sits in queue for hours</li>
-          <li>✗ Engineer context-switches to answer it</li>
-          <li>✗ Same question opens a new ticket next week</li>
-          <li>✗ Knowledge never captured in docs</li>
-        </ul>
-      </div>
-    </div>
-
-    <hr class="full-divider">
-
-    <!-- ── Sources ────────────────────────────────────────────────────────── -->
-    <section id="sources">
-      <div class="section-label">What it reads</div>
-      <h2>Connected to your entire knowledge base.</h2>
-      <p class="section-sub">
-        Connect your knowledge base in minutes. DevResolve reads your actual documentation
-        and answers from it — Confluence, Notion, GitHub, your docs site, and more.
-      </p>
-
-      <div class="sources-grid">
-        <div class="source-card">
-          <div class="source-icon">&#128196;</div>
-          <div>
-            <div class="source-name">Confluence</div>
-            <div class="source-type">Wiki &amp; internal docs</div>
-          </div>
-        </div>
-
-        <div class="source-card">
-          <div class="source-icon">&#9997;</div>
-          <div>
-            <div class="source-name">Notion</div>
-            <div class="source-type">Team knowledge base</div>
-          </div>
-        </div>
-
-        <div class="source-card">
-          <div class="source-icon">&#128008;</div>
-          <div>
-            <div class="source-name">GitHub</div>
-            <div class="source-type">READMEs, wikis, /docs</div>
-          </div>
-        </div>
-
-        <div class="source-card">
-          <div class="source-icon">&#127760;</div>
-          <div>
-            <div class="source-name">Any docs URL</div>
-            <div class="source-type">Public docs site or sitemap</div>
-          </div>
-        </div>
-
-        <div class="source-card">
-          <div class="source-icon">&#128101;</div>
-          <div>
-            <div class="source-name">Zendesk</div>
-            <div class="source-type">Help centre articles</div>
-          </div>
-        </div>
-
-        <div class="source-card">
-          <div class="source-icon">&#127381;</div>
-          <div>
-            <div class="source-name">Jira</div>
-            <div class="source-type">Resolved ticket history</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="full-divider">
-
-    <!-- ── Docs Gap Report ────────────────────────────────────────────────── -->
-    <section id="gaps">
-      <div class="section-label">Docs Gap Report</div>
-      <h2>See what your docs are missing.</h2>
-      <p class="section-sub">
-        Every question the bot can't answer is a signal. DevResolve logs every
-        unanswered question and surfaces the gaps back to your team so you know
-        exactly what to write next.
-      </p>
-
-      <div class="gap-showcase">
-        <div>
-          <h3>Turn support volume into a documentation roadmap.</h3>
-          <p>
-            Your docs aren't failing randomly. Developers ask the same unanswered
-            questions over and over. The Gap Report shows you which topics are missing
-            so you can fix them once and eliminate entire categories of support load.
-          </p>
-          <br>
-          <p>
-            Every escalated chat question is automatically logged with the session context
-            and timestamp. Accessible via your dashboard or the <code style="color:var(--indigo-l);font-size:0.85rem;">GET&nbsp;/dashboard/gaps</code> API.
-          </p>
-        </div>
-
-        <div class="gap-list">
-          <div class="gap-list-header" style="grid-template-columns:1fr;">
-            <span>Unanswered questions this week</span>
-          </div>
-          <div class="gap-item" style="grid-template-columns:1fr;">
-            <span class="gap-question">How do I rotate my API key without downtime?</span>
-          </div>
-          <div class="gap-item" style="grid-template-columns:1fr;">
-            <span class="gap-question">What webhook events fire on a plan downgrade?</span>
-          </div>
-          <div class="gap-item" style="grid-template-columns:1fr;">
-            <span class="gap-question">Does the SDK support retries on 429?</span>
-          </div>
-          <div class="gap-item" style="grid-template-columns:1fr;">
-            <span class="gap-question">Where are EU data residency docs?</span>
-          </div>
-          <div class="gap-item" style="grid-template-columns:1fr;">
-            <span class="gap-question">Can I use the API without a billing account?</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="full-divider">
-
-    <!-- ── Demo ──────────────────────────────────────────────────────────── -->
-    <section id="demo" style="text-align:center;">
-      <div class="section-label">Live demo</div>
-      <h2>Try it right now.</h2>
-      <p class="section-sub" style="margin:0 auto 40px;">
-        The chat bubble below is the actual DevResolve widget running live.
-        Ask it anything about DevResolve — deployment, setup, pricing.
-      </p>
-      <div style="display:inline-block;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:40px 48px;text-align:center;">
-        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:8px;">👇 Click the purple bubble in the bottom-right corner</p>
-        <p style="color:var(--subtle);font-size:0.8rem;">Powered by DevResolve — reading live documentation</p>
-      </div>
-    </section>
-
-    <hr class="full-divider">
-
-    <!-- ── Pricing ────────────────────────────────────────────────────────── -->
-    <section id="pricing">
-      <div class="section-label">Pricing</div>
-      <h2>Pay per answer. Not per seat.</h2>
-      <p class="section-sub">
-        Flat platform fee. Answers included. Overage only when you grow beyond your plan.
-        Escalations to Zendesk, Jira, or Linear are always free.
-      </p>
-
-      <div class="pricing-grid">
-        <!-- Starter -->
-        <div class="price-card">
-          <p class="price-plan">Starter</p>
-          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:6px;">
-            <span class="price-main-val">$249</span>
-          </div>
-          <p class="price-period">platform fee</p>
-          <p class="price-metered">200 answers included &middot; $2.00 per answer after</p>
-          <hr class="price-divider"/>
-          <ul class="price-features">
-            <li>Chat widget embed (one script tag)</li>
-            <li>1 knowledge source (Confluence or docs URL)</li>
-            <li>Zendesk, Jira, or Linear escalation</li>
-            <li>Docs gap report</li>
-            <li>Email + Teams notifications</li>
-          </ul>
-          <a href="https://api.devresolve.ai/onboard/plan" class="btn btn-outline" style="width:100%;justify-content:center;">Get started &rarr;</a>
-        </div>
-
-        <!-- Growth — featured -->
-        <div class="price-card featured" style="position:relative;">
-          <div class="price-badge">Most popular</div>
-          <p class="price-plan">Growth</p>
-          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:6px;">
-            <span class="price-main-val">$499</span>
-          </div>
-          <p class="price-period">platform fee</p>
-          <p class="price-metered">750 answers included &middot; $1.50 per answer after</p>
-          <hr class="price-divider"/>
-          <ul class="price-features">
-            <li>Everything in Starter</li>
-            <li>All knowledge sources (Confluence, Notion, GitHub, URL, Zendesk, Jira)</li>
-            <li>Priority ingestion (re-indexed every hour)</li>
-            <li>Dedicated onboarding call</li>
-          </ul>
-          <a href="https://api.devresolve.ai/onboard/plan" class="btn btn-primary" style="width:100%;justify-content:center;">Get started &rarr;</a>
-        </div>
-
-        <!-- Scale -->
-        <div class="price-card">
-          <p class="price-plan">Scale</p>
-          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:6px;">
-            <span class="price-main-val">$999</span>
-          </div>
-          <p class="price-period">platform fee</p>
-          <p class="price-metered">2,000 answers included &middot; $1.00 per answer after</p>
-          <hr class="price-divider"/>
-          <ul class="price-features">
-            <li>Everything in Growth</li>
-            <li>Unlimited knowledge sources</li>
-            <li>SLA support</li>
-            <li>Custom integrations</li>
-            <li>Usage dashboard + analytics</li>
-          </ul>
-          <a href="https://api.devresolve.ai/onboard/plan" class="btn btn-outline" style="width:100%;justify-content:center;">Get started &rarr;</a>
-        </div>
-
-        <!-- Sovereign -->
-        <div class="price-card" style="border-color:rgba(250,204,21,0.3);background:linear-gradient(135deg,var(--bg-card) 0%,#0f1209 100%);">
-          <p class="price-plan">Sovereign</p>
-          <div style="margin-bottom:6px;">
-            <span class="price-main-val">Custom</span>
-          </div>
-          <p class="price-period">annual contract</p>
-          <p class="price-metered" style="color:#fbbf24;">From $2,500 &middot; bring your own infrastructure</p>
-          <hr class="price-divider"/>
-          <ul class="price-features">
-            <li>Everything in Scale</li>
-            <li>Self-hosted in your VPC or on-premise</li>
-            <li>Bring your own LLM API keys (BYOK)</li>
-            <li>Zero data leaves your environment</li>
-            <li>SSO / SAML</li>
-            <li>Procurement &amp; security review support</li>
-          </ul>
-          <a href="mailto:devresolve.ai@outlook.com?subject=Sovereign%20Plan%20Enquiry" class="btn btn-outline" style="width:100%;justify-content:center;border-color:rgba(250,204,21,0.4);color:#fbbf24;">Talk to us &rarr;</a>
-        </div>
-      </div>
-
-      <p style="text-align:center;color:var(--subtle);font-size:0.82rem;margin-top:32px;">
-        Questions? <a href="mailto:devresolve.ai@outlook.com">devresolve.ai@outlook.com</a>
-      </p>
-    </section>
-
-    <hr class="full-divider">
-
-    <!-- ── ROI Calculator ──────────────────────────────────────────────────── -->
-    <section id="calculator">
-      <div class="section-label">ROI Calculator</div>
-      <h2>See what DevResolve saves you.</h2>
-      <p class="section-sub">
-        Drag the sliders to match your team. See your estimated savings before you spend a penny.
-      </p>
-
-      <div class="calc-wrap">
-
-        <div class="calc-inputs">
-          <div class="calc-row">
-            <div class="calc-label-row">
-              <label class="calc-label">Technical support tickets per month</label>
-              <span class="calc-val" id="val-tickets">500</span>
-            </div>
-            <input type="range" class="calc-slider" id="sl-tickets" min="50" max="5000" step="50" value="500">
-            <div class="calc-range-labels"><span>50</span><span>5,000+</span></div>
-          </div>
-
-          <div class="calc-row">
-            <div class="calc-label-row">
-              <label class="calc-label">% answerable from your documentation</label>
-              <span class="calc-val" id="val-pct">60</span>%
-            </div>
-            <input type="range" class="calc-slider" id="sl-pct" min="10" max="90" step="5" value="60">
-            <div class="calc-range-labels"><span>10%</span><span>90%</span></div>
-          </div>
-
-          <div class="calc-row">
-            <div class="calc-label-row">
-              <label class="calc-label">Average cost per ticket (engineer time + context switch)</label>
-              <span>$<span class="calc-val" id="val-cost">45</span></span>
-            </div>
-            <input type="range" class="calc-slider" id="sl-cost" min="15" max="200" step="5" value="45">
-            <div class="calc-range-labels"><span>$15</span><span>$200</span></div>
-          </div>
-        </div>
-
-        <div class="calc-results">
-          <div class="calc-result-card">
-            <div class="calc-result-label">Tickets deflected / mo</div>
-            <div class="calc-result-val" id="res-deflected">300</div>
-          </div>
-          <div class="calc-result-card highlight">
-            <div class="calc-result-label">Engineer time saved / mo</div>
-            <div class="calc-result-val" id="res-saved">$13,500</div>
-            <div class="calc-result-sub">vs DevResolve cost of ~$<span id="res-cost">529</span></div>
-          </div>
-          <div class="calc-result-card">
-            <div class="calc-result-label">ROI</div>
-            <div class="calc-result-val green" id="res-roi">26&times;</div>
-          </div>
-        </div>
-
-      </div>
-
-      <p style="text-align:center;margin-top:36px;">
-        <a class="btn btn-primary" href="https://api.devresolve.ai/onboard/plan" style="font-size:1rem;padding:14px 32px;">Start saving &rarr;</a>
-      </p>
-    </section>
-
-    <hr class="full-divider">
-
-    <!-- ── Social proof ───────────────────────────────────────────────────── -->
-    <section id="social">
-      <div class="section-label">Early access</div>
-      <h2>Trusted by engineering teams.</h2>
-      <p class="section-sub">
-        We're onboarding our first cohort of teams. Join early and shape the product.
-      </p>
-
-      <div class="social-grid">
-        <div class="social-card">
-          <div class="social-placeholder">
-            <strong style="color:var(--text);display:block;margin-bottom:8px;">"Technical questions were turning into tickets for things already in our docs. DevResolve cut that by 80% in the first month."</strong>
-            <span>— VP Engineering, Series B API platform</span>
-          </div>
-        </div>
-        <div class="social-card">
-          <div class="social-placeholder">
-            <strong style="color:var(--text);display:block;margin-bottom:8px;">"One script tag. It reads our Confluence, answers instantly, escalates to Zendesk when it genuinely can't. Our engineers haven't touched a support ticket in weeks."</strong>
-            <span>— CTO, developer tools startup</span>
-          </div>
-        </div>
-        <div class="social-card">
-          <div class="social-placeholder">
-            <strong style="color:var(--text);display:block;margin-bottom:8px;">"The docs gap report showed us we were missing auth docs. We wrote them. Escalations dropped 60% that week."</strong>
-            <span>— Head of Developer Experience</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="full-divider">
-
-    <!-- ── Footer ────────────────────────────────────────────────────────── -->
-    <footer>
-      <div class="footer-brand">
-        <span class="logo-mark">&#9889;</span>
-        DevResolve
-      </div>
-
-      <div class="footer-links">
-        <a href="#how-it-works">How it works</a>
+        <a href="#api">API</a>
         <a href="#pricing">Pricing</a>
-        <a href="https://api.devresolve.ai/docs">API docs</a>
-        <a href="mailto:devresolve.ai@outlook.com">Contact</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
-        <a href="/security">Security</a>
+        <a href="https://api.devresolve.ai/docs" target="_blank">Docs</a>
+        <a href="https://github.com/Devresolveai/devresolve-core" target="_blank">GitHub</a>
+        <a class="btn btn-primary" href="mailto:ethan@devresolve.ai" style="padding:7px 16px;font-size:0.82rem;">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="hero-badge">Open source knowledge infrastructure</div>
+    <h1>One brain for your<br>whole company.</h1>
+    <p class="hero-sub-headline">Any agent can query it.</p>
+    <p>
+      Connect your docs, wikis, and ticketing tools. Get a single API that any AI agent,
+      internal tool, or team member can query for real, sourced answers. Not another chatbot.
+      The layer underneath all of them.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-outline" href="https://github.com/Devresolveai/devresolve-core" target="_blank">View on GitHub</a>
+      <a class="btn btn-primary" href="https://api.devresolve.ai/docs" target="_blank">Read the docs</a>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-label">Query the brain</div>
+      <pre><span class="cm"># Ask your company's knowledge base anything</span>
+<span class="kw">curl</span> -X POST https://api.devresolve.ai/api/v1/query \
+  -H <span class="str">"X-API-Key: cb_your_key"</span> \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -d <span class="str">'{"question": "How do we handle SSO for enterprise customers?"}'</span>
+
+<span class="cm"># Response</span>
+{
+  <span class="key">"answer"</span>: <span class="str">"Enterprise SSO is configured through SAML 2.0..."</span>,
+  <span class="key">"confidence"</span>: <span class="num">0.94</span>,
+  <span class="key">"sources"</span>: [{<span class="key">"source"</span>: <span class="str">"Confluence: Auth Architecture"</span>, <span class="key">"score"</span>: <span class="num">0.91</span>}],
+  <span class="key">"escalated"</span>: <span class="kw">false</span>
+}</pre>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- problem -->
+  <section>
+    <div class="section-label">The problem</div>
+    <h2>Every company is deploying AI. None of it knows anything.</h2>
+    <p class="section-sub">Your company's knowledge is scattered. Your AI agents are blind. That's the gap.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">8-12</div>
+        <p>tools hold your company's knowledge. Confluence, Slack, Jira, Notion, Google Drive, GitHub. None of them talk to each other.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">Zero</div>
+        <p>of the AI agents you're deploying actually know anything about your company. Sales agents, support bots, onboarding flows. All flying blind.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">30%</div>
+        <p>of the average knowledge worker's week is spent looking for information. Not using it. Looking for it. Across a dozen tools that don't connect.</p>
+      </div>
+    </div>
+
+    <div class="highlight-bar">
+      <p>The bottleneck isn't AI. It's the knowledge layer underneath it.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- how it works -->
+  <section id="how-it-works">
+    <div class="section-label">How it works</div>
+    <h2>Connect your tools. Your AI gets a brain.</h2>
+    <p class="section-sub">Four steps. The first one takes 20 minutes. The rest is automatic.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-num">01 &mdash; Connect</div>
+        <h3>Plug in your knowledge sources</h3>
+        <p>Confluence, Notion, Jira, Zendesk, GitHub, any docs URL. Self-serve setup. We pull it all in and index it.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">02 &mdash; Synthesize</div>
+        <h3>Unified knowledge layer</h3>
+        <p>Not keyword matching. Real synthesis across all your sources. Confidence scoring on every answer so you know how good it is.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">03 &mdash; Query</div>
+        <h3>REST API and MCP server</h3>
+        <p>Your agents call the API. Your team uses the dashboard. Any surface, any tool, same brain. Works with whatever you're building.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">04 &mdash; Improve</div>
+        <h3>Gets smarter over time</h3>
+        <p>Knowledge gaps surface automatically. You see exactly where your docs are strong and where they're thin. Every query makes the brain better.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- sources -->
+  <section id="sources">
+    <div class="section-label">Integrations</div>
+    <h2>Reads from where your knowledge already lives.</h2>
+    <p class="section-sub">Connect in minutes. We handle ingestion, chunking, and indexing.</p>
+
+    <div class="sources-grid">
+      <div class="source-card">
+        <div class="source-icon">📄</div>
+        <div><div class="source-name">Confluence</div><div class="source-type">Wiki and internal docs</div></div>
+      </div>
+      <div class="source-card">
+        <div class="source-icon">✏️</div>
+        <div><div class="source-name">Notion</div><div class="source-type">Team knowledge base</div></div>
+      </div>
+      <div class="source-card">
+        <div class="source-icon">🎫</div>
+        <div><div class="source-name">Jira</div><div class="source-type">Issue history and context</div></div>
+      </div>
+      <div class="source-card">
+        <div class="source-icon">🎧</div>
+        <div><div class="source-name">Zendesk</div><div class="source-type">Ticket history and articles</div></div>
+      </div>
+      <div class="source-card">
+        <div class="source-icon">🐙</div>
+        <div><div class="source-name">GitHub</div><div class="source-type">READMEs, wikis, /docs</div></div>
+      </div>
+      <div class="source-card">
+        <div class="source-icon">🌐</div>
+        <div><div class="source-name">Any URL</div><div class="source-type">Docs sites, sitemaps, pages</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- api -->
+  <section id="api">
+    <div class="section-label">API</div>
+    <h2>Built for developers. Not for demos.</h2>
+    <p class="section-sub">REST API and MCP server. Ship in an afternoon.</p>
+
+    <div class="api-grid">
+      <div class="api-endpoints">
+        <div class="endpoint">
+          <div><span class="method method-post">POST</span><span class="endpoint-path">/api/v1/query</span></div>
+          <p class="endpoint-desc">Ask a question. Get a synthesized answer with confidence score and source citations.</p>
+        </div>
+        <div class="endpoint">
+          <div><span class="method method-post">POST</span><span class="endpoint-path">/api/v1/ingest</span></div>
+          <p class="endpoint-desc">Feed it a URL or raw text. Content gets chunked, embedded, and indexed automatically.</p>
+        </div>
+        <div class="endpoint">
+          <div><span class="method method-post">POST</span><span class="endpoint-path">/api/v1/search</span></div>
+          <p class="endpoint-desc">Raw vector search. Returns matching document chunks with relevance scores.</p>
+        </div>
+        <div class="endpoint">
+          <div><span class="method method-get">GET</span><span class="endpoint-path">/api/v1/sources</span></div>
+          <p class="endpoint-desc">List all connected knowledge sources for your org.</p>
+        </div>
+        <div class="endpoint">
+          <div><span class="method method-del">DEL</span><span class="endpoint-path">/api/v1/sources/{id}</span></div>
+          <p class="endpoint-desc">Remove a knowledge source.</p>
+        </div>
       </div>
 
-      <div class="footer-copy">&copy; 2026 DevResolve, LLC &mdash; All rights reserved.</div>
-    </footer>
-
-    <script>
-      function copyEmbed(btn) {
-        var code = '<script src="https://api.devresolve.ai/widget.js" data-org-id="YOUR-ORG-UUID"><\/script>';
-        navigator.clipboard.writeText(code).then(function () {
-          var orig = btn.textContent;
-          btn.textContent = 'Copied!';
-          setTimeout(function () { btn.textContent = orig; }, 2000);
-        }).catch(function () {
-          btn.textContent = 'Copy failed';
-          setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
-        });
+      <div>
+        <div class="code-block" style="margin: 0;">
+          <div class="code-block-label">MCP Server</div>
+          <pre><span class="cm"># Claude Desktop, Cursor, or any MCP client</span>
+{
+  <span class="key">"mcpServers"</span>: {
+    <span class="key">"company-brain"</span>: {
+      <span class="key">"command"</span>: <span class="str">"python"</span>,
+      <span class="key">"args"</span>: [<span class="str">"src/mcp_server.py"</span>],
+      <span class="key">"env"</span>: {
+        <span class="key">"CB_API_KEY"</span>: <span class="str">"your-key"</span>,
+        <span class="key">"COMPANY_BRAIN_API_URL"</span>: <span class="str">"https://..."</span>
       }
-    </script>
-    <!-- ROI Calculator logic -->
-  <script>
-  (function(){
-    var slT=document.getElementById('sl-tickets'),slP=document.getElementById('sl-pct'),slC=document.getElementById('sl-cost');
-    if(!slT)return;
-    function fmt(n){return n>=1000?'$'+(n/1000).toFixed(n%1000===0?0:1)+'k':'$'+n.toLocaleString();}
-    function upd(){
-      var t=+slT.value,p=+slP.value/100,c=+slC.value;
-      document.getElementById('val-tickets').textContent=t.toLocaleString();
-      document.getElementById('val-pct').textContent=+slP.value;
-      document.getElementById('val-cost').textContent=c;
-      var def=Math.round(t*p),sav=def*c;
-      var fee=t<300?249:t<1000?499:999,inc=t<300?200:t<1000?750:2000,per=t<300?2.00:t<1000?1.50:1.00,bill=Math.max(0,def-inc),dr=Math.round(fee+bill*per);
-      var roi=sav>0?Math.round(sav/dr):0;
-      document.getElementById('res-deflected').textContent=def.toLocaleString();
-      document.getElementById('res-saved').textContent=fmt(sav);
-      document.getElementById('res-cost').textContent=dr.toLocaleString();
-      document.getElementById('res-roi').textContent=roi+'×';
     }
-    slT.addEventListener('input',upd);slP.addEventListener('input',upd);slC.addEventListener('input',upd);
-    upd();
-  })();
-  </script>
+  }
+}
 
-<!-- DevResolve live demo widget -->
-    <script src="https://api.devresolve.ai/widget.js"
-            data-org-id="00000000-0000-0000-0000-000000000001"></script>
-  </body>
+<span class="cm"># Tools available:</span>
+<span class="cm"># - query_knowledge</span>
+<span class="cm"># - list_sources</span>
+<span class="cm"># - search_documents</span></pre>
+        </div>
+        <p style="margin-top: 14px; font-size: 0.85rem; color: var(--text-dim);">
+          Any MCP-compatible agent gets your company's knowledge as a native tool. No custom integration code.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- pricing -->
+  <section id="pricing">
+    <div class="section-label">Pricing</div>
+    <h2>Open source core. Hosted cloud. Pay for what you use.</h2>
+    <p class="section-sub">Self-host it for free. Or let us run it.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="plan-label">Open Source</div>
+        <div class="plan-price">Free</div>
+        <div class="plan-period">self-hosted, forever</div>
+        <ul class="plan-features">
+          <li>Full engine on your infrastructure</li>
+          <li>All integrations included</li>
+          <li>No limits, no tracking</li>
+          <li>Community supported</li>
+          <li>MIT license</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://github.com/Devresolveai/devresolve-core" target="_blank" style="width:100%;justify-content:center;">View on GitHub</a>
+      </div>
+
+      <div class="price-card pop">
+        <div class="plan-label">Cloud</div>
+        <div class="plan-price">$49<span style="font-size:0.9rem;font-weight:500;color:var(--text-dim);">/mo</span></div>
+        <div class="plan-period">+ $0.03 per query</div>
+        <ul class="plan-features">
+          <li>Managed infrastructure, zero ops</li>
+          <li>Unlimited knowledge sources</li>
+          <li>Full API and MCP access</li>
+          <li>Dashboard and analytics</li>
+          <li>$5 trial credit to start</li>
+        </ul>
+        <a class="btn btn-primary" href="mailto:ethan@devresolve.ai" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+
+      <div class="price-card">
+        <div class="plan-label">Enterprise</div>
+        <div class="plan-price">Custom</div>
+        <div class="plan-period">annual</div>
+        <ul class="plan-features">
+          <li>VPC or dedicated deployment</li>
+          <li>SSO and SAML</li>
+          <li>SLA and priority support</li>
+          <li>Volume pricing</li>
+          <li>Security review support</li>
+        </ul>
+        <a class="btn btn-ghost" href="mailto:ethan@devresolve.ai" style="width:100%;justify-content:center;">Talk to us</a>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--text-dim);font-size:0.82rem;margin-top:28px;">
+      A typical team at 3,000 queries/month pays $139. Still cheaper than one engineer's afternoon.
+    </p>
+  </section>
+
+  <!-- footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">🧠 Company Brain by DevResolve</div>
+      <div class="footer-links">
+        <a href="https://github.com/Devresolveai/devresolve-core" target="_blank">GitHub</a>
+        <a href="https://api.devresolve.ai/docs" target="_blank">API Docs</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/security">Security</a>
+        <a href="mailto:ethan@devresolve.ai">Contact</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 DevResolve. All rights reserved.</p>
+  </footer>
+
+</body>
 </html>
